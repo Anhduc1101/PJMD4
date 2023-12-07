@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -51,9 +52,16 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         return thymeleafViewResolver;
     }
 
+    @Bean(name = "multipartResolver")
+    CommonsMultipartResolver commonsMultipartResolver() {
+        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+        commonsMultipartResolver.setMaxUploadSize(52428800);
+        return commonsMultipartResolver;
+    }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/plugins/**", "/css/**", "/img/**", "/js/**","/images/**","/video/**", "/fonts/**")
-                .addResourceLocations("classpath:assets/admin/plugins/", "classpath:assets/admin/css/", "classpath:assets/admin/img/", "classpath:assets/admin/js/", "classpath:assets/home/video/", "classpath:assets/home/css/", "classpath:assets/home/fonts/", "classpath:assets/home/images/", "classpath:assets/home/js/");
+        registry.addResourceHandler("/plugins/**", "/css/**", "/img/**", "/js/**", "/images/**", "/video/**", "/fonts/**","/uploads/**")
+                .addResourceLocations("classpath:assets/admin/plugins/", "classpath:assets/admin/css/", "classpath:assets/admin/img/", "classpath:assets/admin/js/", "classpath:assets/home/video/", "classpath:assets/home/css/", "classpath:assets/home/fonts/", "classpath:assets/home/images/", "classpath:assets/home/js/","/uploads/");
     }
 }
