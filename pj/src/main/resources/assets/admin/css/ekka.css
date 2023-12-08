@@ -24024,7 +24024,7 @@ table.dataTable td .btn-group button:first-child {
   border-radius: 15px 0 0 15px !important;
 }
 table.dataTable td .btn-group button:nth-last-child(-n+2) {
-  border-radius: 0 15px 15px 0 !important;
+  /*border-radius: 0 15px 15px 0 !important;*/
 }
 
 .ec-tbl .ec-tbl-content {

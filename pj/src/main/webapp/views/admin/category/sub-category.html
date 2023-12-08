@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr" xmlns:form="http://www.w3.org/1999/xhtml">
 <html xmlns:th="http://www.thymeleaf.org">
@@ -8,422 +7,235 @@
 
 <body class="ec-header-fixed ec-sidebar-fixed ec-sidebar-dark ec-header-light" id="body">
 
-	<!-- WRAPPER -->
-	<div class="wrapper">
+<!-- WRAPPER -->
+<div class="wrapper">
 
-		<!-- LEFT MAIN SIDEBAR -->
-		<th:block th:insert="admin/layouts/sidebar.html"></th:block>
-
-
-		<!-- PAGE WRAPPER -->
-		<div class="ec-page-wrapper">
-
-			<!-- Header -->
-			<th:block th:insert="admin/layouts/header.html"></th:block>
+    <!-- LEFT MAIN SIDEBAR -->
+    <th:block th:insert="admin/layouts/sidebar.html"></th:block>
 
 
-			<!-- CONTENT WRAPPER -->
-			<div class="ec-content-wrapper">
-				<div class="content">
-					<div class="breadcrumb-wrapper breadcrumb-wrapper-2 breadcrumb-contacts">
-						<h1>Category</h1>
-						<p class="breadcrumbs"><span><a th:href="@{/}">Home</a></span>
-							<span><i class="mdi mdi-chevron-right"></i></span>Category</p>
-					</div>
-					<div class="row">
-						<div class="col-xl-4 col-lg-12">
-							<div class="ec-cat-list card card-default mb-24px">
-								<div class="card-body">
-									<div class="ec-cat-form">
-										<h4>Add New Category</h4>
+    <!-- PAGE WRAPPER -->
+    <div class="ec-page-wrapper">
 
-										<form action="add-category" method="post" th:object="${category}">
-
-											<div class="form-group row">
-												<label class="col-12 col-form-label">Category Name:</label>
-												<div class="col-12">
-													<input th:field="*{categoryName}"  name="categoryName" class="form-control here slug-title" type="text" placeholder="Enter here ..."/>
-												</div>
-											</div>
-											<div class="form-group row">
-												<label class="col-12 col-form-label">Category Status:</label>
-												<div >
-													<input type="radio" th:field="*{categoryStatus}"  name="categoryStatus"  checked="checked" value="1"/>Active
-												</div>
-												<div >
-													<input type="radio" th:field="*{categoryStatus}" name="categoryStatus"  value="0"/>Inactive
-												</div>
-											</div>
-
-											<div class="row">
-												<div class="col-12">
-													<button name="submit" type="submit" class="btn btn-primary">Submit</button>
-												</div>
-											</div>
-
-										</form>
-
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-8 col-lg-12">
-							<div class="ec-cat-list card card-default">
-								<div class="card-body">
-									<div class="table-responsive">
-										<table id="responsive-data-table" class="table">
-											<thead>
-											<tr>
-												<th>Cat.ID</th>
-												<th>Name</th>
-												<th>Status</th>
-												<th>Action</th>
-											</tr>
-											</thead>
-											<tbody>
-											<tr th:each="item : ${categoryList}">
-												<td th:text="${item.categoryId}"></td>
-												<td th:text="${item.categoryName}"></td>
-												<td class="label" th:class="${item.categoryStatus?'label-danger':'label-success'}" th:text="${item.categoryStatus?'Active':'Inactive'}"></td>
-												<td>
-													<div class="btn-group">
-														<button th:href="@{category/changeStatus/${item.categoryId}}" th:text="${item.categoryStatus ? 'Block' : 'Unblock'}" type="button" class="btn btn-outline-danger"></button>
-														<button th:href="@{category/edit/${item.categoryId}}" type="button" class="btn btn-outline-warning">Edit</button>
-													</div>
-												</td>
-											</tr>
-<!--											<tr>-->
-<!--												<td><img class="cat-thumb" src="assets/img/category/footwear.png" alt="Product Image" /></td>-->
-<!--												<td>Footwear</td>-->
-<!--												<td>-->
-<!--														<span class="ec-sub-cat-list">-->
-<!--															<span class="ec-sub-cat-count" title="Total Sub Categories">4</span>-->
-<!--															<span class="ec-sub-cat-tag">Sports</span>-->
-<!--															<span class="ec-sub-cat-tag">Casual</span>-->
-<!--															<span class="ec-sub-cat-tag">safety shoes </span>-->
-<!--															<span class="ec-sub-cat-tag">Sandal</span>-->
-<!--														</span>-->
-<!--												</td>-->
-<!--												<td>68</td>-->
-<!--												<td>5161</td>-->
-<!--												<td>ACTIVE</td>-->
-<!--												<td><span class="badge bg-primary">Medium</span></td>-->
-<!--												<td>-->
-<!--													<div class="btn-group">-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success">Info</button>-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"-->
-<!--																data-bs-toggle="dropdown" aria-haspopup="true"-->
-<!--																aria-expanded="false" data-display="static">-->
-<!--															<span class="sr-only">Info</span>-->
-<!--														</button>-->
-
-<!--														<div class="dropdown-menu">-->
-<!--															<a class="dropdown-item" href="#">Edit</a>-->
-<!--															<a class="dropdown-item" href="#">Delete</a>-->
-<!--														</div>-->
-<!--													</div>-->
-<!--												</td>-->
-<!--											</tr>-->
-<!--											<tr>-->
-<!--												<td><img class="cat-thumb" src="assets/img/category/jewelry.png" alt="Product Image" /></td>-->
-<!--												<td>Jewelry</td>-->
-<!--												<td>-->
-<!--														<span class="ec-sub-cat-list">-->
-<!--															<span class="ec-sub-cat-count" title="Total Sub Categories">4</span>-->
-<!--															<span class="ec-sub-cat-tag">necklace</span>-->
-<!--															<span class="ec-sub-cat-tag">chain</span>-->
-<!--															<span class="ec-sub-cat-tag">rings</span>-->
-<!--															<span class="ec-sub-cat-tag">earings</span>-->
-<!--														</span>-->
-<!--												</td>-->
-<!--												<td>68</td>-->
-<!--												<td>5161</td>-->
-<!--												<td><span class="inactive">Inactive</span></td>-->
-<!--												<td><span class="badge badge-success">Top</span></td>-->
-<!--												<td>-->
-<!--													<div class="btn-group">-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success">Info</button>-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"-->
-<!--																data-bs-toggle="dropdown" aria-haspopup="true"-->
-<!--																aria-expanded="false" data-display="static">-->
-<!--															<span class="sr-only">Info</span>-->
-<!--														</button>-->
-
-<!--														<div class="dropdown-menu">-->
-<!--															<a class="dropdown-item" href="#">Edit</a>-->
-<!--															<a class="dropdown-item" href="#">Delete</a>-->
-<!--														</div>-->
-<!--													</div>-->
-<!--												</td>-->
-<!--											</tr>-->
-<!--											<tr>-->
-<!--												<td><img class="cat-thumb" src="assets/img/category/perfume.png" alt="Product Image" /></td>-->
-<!--												<td>Perfume</td>-->
-<!--												<td>-->
-<!--														<span class="ec-sub-cat-list">-->
-<!--															<span class="ec-sub-cat-count" title="Total Sub Categories">4</span>-->
-<!--															<span class="ec-sub-cat-tag">Clothes perfume</span>-->
-<!--															<span class="ec-sub-cat-tag">deodorant </span>-->
-<!--															<span class="ec-sub-cat-tag">Flower fragrance </span>-->
-<!--															<span class="ec-sub-cat-tag">Air Freshener</span>-->
-<!--														</span>-->
-<!--												</td>-->
-<!--												<td>38</td>-->
-<!--												<td>1561</td>-->
-<!--												<td>ACTIVE</td>-->
-<!--												<td><span class="badge bg-primary">Medium</span></td>-->
-<!--												<td>-->
-<!--													<div class="btn-group">-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success">Info</button>-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"-->
-<!--																data-bs-toggle="dropdown" aria-haspopup="true"-->
-<!--																aria-expanded="false" data-display="static">-->
-<!--															<span class="sr-only">Info</span>-->
-<!--														</button>-->
-
-<!--														<div class="dropdown-menu">-->
-<!--															<a class="dropdown-item" href="#">Edit</a>-->
-<!--															<a class="dropdown-item" href="#">Delete</a>-->
-<!--														</div>-->
-<!--													</div>-->
-<!--												</td>-->
-<!--											</tr>-->
-<!--											<tr>-->
-<!--												<td><img class="cat-thumb" src="assets/img/category/cosmetics.png" alt="Product Image" /></td>-->
-<!--												<td>Cosmetics</td>-->
-<!--												<td>-->
-<!--														<span class="ec-sub-cat-list">-->
-<!--															<span class="ec-sub-cat-count" title="Total Sub Categories">10</span>-->
-<!--															<span class="ec-sub-cat-tag">Makeup kit</span>-->
-<!--															<span class="ec-sub-cat-tag">Hair gel</span>-->
-<!--															<span class="ec-sub-cat-tag">sunscreen</span>-->
-<!--															<span class="ec-sub-cat-tag">facewash</span>-->
-<!--															<span class="ec-sub-cat-tag">Body shop</span>-->
-<!--															<span class="ec-sub-cat-tag">Lipstick</span>-->
-<!--															<span class="ec-sub-cat-tag">eye liner</span>-->
-<!--															<span class="ec-sub-cat-tag">Hair Shampoo</span>-->
-<!--															<span class="ec-sub-cat-tag">Beauty Cream</span>-->
-<!--															<span class="ec-sub-cat-tag">Skin Serum</span>-->
-<!--														</span>-->
-<!--												</td>-->
-<!--												<td>18</td>-->
-<!--												<td>1061</td>-->
-<!--												<td>ACTIVE</td>-->
-<!--												<td><span class="badge bg-danger">Low</span></td>-->
-<!--												<td>-->
-<!--													<div class="btn-group">-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success">Info</button>-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"-->
-<!--																data-bs-toggle="dropdown" aria-haspopup="true"-->
-<!--																aria-expanded="false" data-display="static">-->
-<!--															<span class="sr-only">Info</span>-->
-<!--														</button>-->
-
-<!--														<div class="dropdown-menu">-->
-<!--															<a class="dropdown-item" href="#">Edit</a>-->
-<!--															<a class="dropdown-item" href="#">Delete</a>-->
-<!--														</div>-->
-<!--													</div>-->
-<!--												</td>-->
-<!--											</tr>-->
-<!--											<tr>-->
-<!--												<td><img class="cat-thumb" src="assets/img/category/glasses.png" alt="Product Image" /></td>-->
-<!--												<td>Glasses</td>-->
-<!--												<td>-->
-<!--														<span class="ec-sub-cat-list">-->
-<!--															<span class="ec-sub-cat-count" title="Total Sub Categories">2</span>-->
-<!--															<span class="ec-sub-cat-tag">Sunglasses </span>-->
-<!--															<span class="ec-sub-cat-tag">Lenses </span>-->
-<!--														</span>-->
-<!--												</td>-->
-<!--												<td>82</td>-->
-<!--												<td>10061</td>-->
-<!--												<td><span class="inactive">Inactive</span></td>-->
-<!--												<td><span class="badge bg-primary">Medium</span></td>-->
-<!--												<td>-->
-<!--													<div class="btn-group">-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success">Info</button>-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"-->
-<!--																data-bs-toggle="dropdown" aria-haspopup="true"-->
-<!--																aria-expanded="false" data-display="static">-->
-<!--															<span class="sr-only">Info</span>-->
-<!--														</button>-->
-
-<!--														<div class="dropdown-menu">-->
-<!--															<a class="dropdown-item" href="#">Edit</a>-->
-<!--															<a class="dropdown-item" href="#">Delete</a>-->
-<!--														</div>-->
-<!--													</div>-->
-<!--												</td>-->
-<!--											</tr>-->
-<!--											<tr>-->
-<!--												<td><img class="cat-thumb" src="assets/img/category/bag.png" alt="Product Image" /></td>-->
-<!--												<td>Bags</td>-->
-<!--												<td>-->
-<!--														<span class="ec-sub-cat-list">-->
-<!--															<span class="ec-sub-cat-count" title="Total Sub Categories">4</span>-->
-<!--															<span class="ec-sub-cat-tag">shopping bag</span>-->
-<!--															<span class="ec-sub-cat-tag">Gym backpack</span>-->
-<!--															<span class="ec-sub-cat-tag">purse </span>-->
-<!--															<span class="ec-sub-cat-tag">wallet </span>-->
-<!--														</span>-->
-<!--												</td>-->
-<!--												<td>18</td>-->
-<!--												<td>3061</td>-->
-<!--												<td>ACTIVE</td>-->
-<!--												<td><span class="badge badge-success">Top</span></td>-->
-<!--												<td>-->
-<!--													<div class="btn-group">-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success">Info</button>-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"-->
-<!--																data-bs-toggle="dropdown" aria-haspopup="true"-->
-<!--																aria-expanded="false" data-display="static">-->
-<!--															<span class="sr-only">Info</span>-->
-<!--														</button>-->
-
-<!--														<div class="dropdown-menu">-->
-<!--															<a class="dropdown-item" href="#">Edit</a>-->
-<!--															<a class="dropdown-item" href="#">Delete</a>-->
-<!--														</div>-->
-<!--													</div>-->
-<!--												</td>-->
-<!--											</tr>-->
-<!--											<tr>-->
-<!--												<td><img class="cat-thumb" src="assets/img/category/footwear.png" alt="Product Image" /></td>-->
-<!--												<td>Footwear</td>-->
-<!--												<td>-->
-<!--														<span class="ec-sub-cat-list">-->
-<!--															<span class="ec-sub-cat-count" title="Total Sub Categories">4</span>-->
-<!--															<span class="ec-sub-cat-tag">Sports</span>-->
-<!--															<span class="ec-sub-cat-tag">Casual</span>-->
-<!--															<span class="ec-sub-cat-tag">safety shoes </span>-->
-<!--															<span class="ec-sub-cat-tag">Sandal</span>-->
-<!--														</span>-->
-<!--												</td>-->
-<!--												<td>68</td>-->
-<!--												<td>5161</td>-->
-<!--												<td>ACTIVE</td>-->
-<!--												<td><span class="badge bg-primary">Medium</span></td>-->
-<!--												<td>-->
-<!--													<div class="btn-group">-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success">Info</button>-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"-->
-<!--																data-bs-toggle="dropdown" aria-haspopup="true"-->
-<!--																aria-expanded="false" data-display="static">-->
-<!--															<span class="sr-only">Info</span>-->
-<!--														</button>-->
-
-<!--														<div class="dropdown-menu">-->
-<!--															<a class="dropdown-item" href="#">Edit</a>-->
-<!--															<a class="dropdown-item" href="#">Delete</a>-->
-<!--														</div>-->
-<!--													</div>-->
-<!--												</td>-->
-<!--											</tr>-->
-<!--											<tr>-->
-<!--												<td><img class="cat-thumb" src="assets/img/category/jewelry.png" alt="Product Image" /></td>-->
-<!--												<td>Jewelry</td>-->
-<!--												<td>-->
-<!--														<span class="ec-sub-cat-list">-->
-<!--															<span class="ec-sub-cat-count" title="Total Sub Categories">4</span>-->
-<!--															<span class="ec-sub-cat-tag">necklace</span>-->
-<!--															<span class="ec-sub-cat-tag">chain</span>-->
-<!--															<span class="ec-sub-cat-tag">rings</span>-->
-<!--															<span class="ec-sub-cat-tag">earings</span>-->
-<!--														</span>-->
-<!--												</td>-->
-<!--												<td>68</td>-->
-<!--												<td>5161</td>-->
-<!--												<td><span class="inactive">Inactive</span></td>-->
-<!--												<td><span class="badge badge-success">Top</span></td>-->
-<!--												<td>-->
-<!--													<div class="btn-group">-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success">Info</button>-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"-->
-<!--																data-bs-toggle="dropdown" aria-haspopup="true"-->
-<!--																aria-expanded="false" data-display="static">-->
-<!--															<span class="sr-only">Info</span>-->
-<!--														</button>-->
-
-<!--														<div class="dropdown-menu">-->
-<!--															<a class="dropdown-item" href="#">Edit</a>-->
-<!--															<a class="dropdown-item" href="#">Delete</a>-->
-<!--														</div>-->
-<!--													</div>-->
-<!--												</td>-->
-<!--											</tr>-->
-<!--											<tr>-->
-<!--												<td><img class="cat-thumb" src="assets/img/category/perfume.png" alt="Product Image" /></td>-->
-<!--												<td>Perfume</td>-->
-<!--												<td>-->
-<!--														<span class="ec-sub-cat-list">-->
-<!--															<span class="ec-sub-cat-count" title="Total Sub Categories">4</span>-->
-<!--															<span class="ec-sub-cat-tag">Clothes perfume</span>-->
-<!--															<span class="ec-sub-cat-tag">deodorant </span>-->
-<!--															<span class="ec-sub-cat-tag">Flower fragrance </span>-->
-<!--															<span class="ec-sub-cat-tag">Air Freshener</span>-->
-<!--														</span>-->
-<!--												</td>-->
-<!--												<td>38</td>-->
-<!--												<td>1561</td>-->
-<!--												<td>ACTIVE</td>-->
-<!--												<td><span class="badge bg-primary">Medium</span></td>-->
-<!--												<td>-->
-<!--													<div class="btn-group">-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success">Info</button>-->
-<!--														<button type="button"-->
-<!--																class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"-->
-<!--																data-bs-toggle="dropdown" aria-haspopup="true"-->
-<!--																aria-expanded="false" data-display="static">-->
-<!--															<span class="sr-only">Info</span>-->
-<!--														</button>-->
-
-<!--														<div class="dropdown-menu">-->
-<!--															<a class="dropdown-item" href="#">Edit</a>-->
-<!--															<a class="dropdown-item" href="#">Delete</a>-->
-<!--														</div>-->
-<!--													</div>-->
-<!--												</td>-->
-<!--											</tr>-->
-
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> <!-- End Content -->
-			</div> <!-- End Content Wrapper -->
-
-			<!-- Footer -->
-			<th:block th:insert="admin/layouts/footer.html"></th:block>
+        <!-- Header -->
+        <th:block th:insert="admin/layouts/header.html"></th:block>
 
 
+        <!-- CONTENT WRAPPER -->
+        <div class="ec-content-wrapper">
+            <div class="content">
+                <div class="breadcrumb-wrapper breadcrumb-wrapper-2 breadcrumb-contacts">
+                    <h1>Category</h1>
+                    <p class="breadcrumbs"><span><a th:href="@{/}">Home</a></span>
+                        <span><i class="mdi mdi-chevron-right"></i></span>Category</p>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-lg-12">
+                        <div class="ec-cat-list card card-default mb-24px">
+                            <div class="card-body" th:if="${category.categoryId==0}">
+                                <div class="ec-cat-form">
+                                    <h4>Add New Category</h4>
 
-		</div> <!-- End Page Wrapper -->
+                                    <form action="add-category" method="post" th:object="${category}">
 
-	</div> <!-- End Wrapper -->
+                                        <div class="form-group row">
+                                            <label class="col-12 col-form-label">Category Name:</label>
+                                            <div class="col-12">
+                                                <input th:field="*{categoryName}" name="categoryName"
+                                                       class="form-control here slug-title" type="text"
+                                                       placeholder="Enter here ..."/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-form-label">Category Status:</label>
+                                            <div>
+                                                <input type="radio" th:field="*{categoryStatus}" name="categoryStatus"
+                                                       checked="checked" value="1"/>Active
+                                            </div>
+                                            <div>
+                                                <input type="radio" th:field="*{categoryStatus}" name="categoryStatus"
+                                                       value="0"/>Inactive
+                                            </div>
+                                        </div>
 
-	<!-- Common Javascript -->
-	<th:block th:insert="admin/layouts/script.html"></th:block>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <button name="submit" type="submit" class="btn btn-primary">Submit
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                            <div class="card-body" th:unless="${category.categoryId==0}">
+                                <div class="ec-cat-form">
+                                    <h4>Update Category</h4>
+
+                                    <form action="/admin/edit-category" method="post" th:object="${category}">
+                                        <div class="form-group row">
+                                            <label class="col-12 col-form-label">Category ID:</label>
+                                            <div class="col-12">
+                                                <input th:field="*{categoryId}" name="categoryId"
+                                                       class="form-control here slug-title" type="text"
+                                                       readonly/>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-12 col-form-label">Category Name:</label>
+                                            <div class="col-12">
+                                                <input th:field="*{categoryName}" name="categoryName"
+                                                       class="form-control here slug-title" type="text"
+                                                       placeholder="Enter here ..."/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-form-label">Category Status:</label>
+                                            <div>
+                                                <input type="radio" th:field="*{categoryStatus}" name="categoryStatus"
+                                                       checked="checked" value="1"/>Active
+                                            </div>
+                                            <div>
+                                                <input type="radio" th:field="*{categoryStatus}" name="categoryStatus"
+                                                       value="0"/>Inactive
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <button name="submit" type="submit" class="btn btn-primary">Submit
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-8 col-lg-12">
+                        <div class="ec-cat-list card card-default">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <div id="responsive-data-table_wrapper"
+                                         class="dataTables_wrapper dt-bootstrap5 no-footer">
+                                        <div class="row justify-content-between top-information">
+                                            <div class="dataTables_length" id="responsive-data-table_length"><label>Show
+                                                <select name="responsive-data-table_length"
+                                                        aria-controls="responsive-data-table"
+                                                        class="form-select form-select-sm">
+                                                    <option value="20">20</option>
+                                                    <option value="30">30</option>
+                                                    <option value="50">50</option>
+                                                    <option value="75">75</option>
+                                                    <option value="-1">All</option>
+                                                </select> entries</label></div>
+                                            <div id="responsive-data-table_filter" class="dataTables_filter"><label>Search:<input
+                                                    type="search" class="form-control form-control-sm" placeholder=""
+                                                    aria-controls="responsive-data-table"></label></div>
+                                        </div>
+                                        <table id="responsive-data-table" class="table dataTable no-footer"
+                                               aria-describedby="responsive-data-table_info">
+                                            <thead>
+                                            <tr>
+
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Name: activate to sort column ascending"
+                                                    style="width: 44.525px;"> No.
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Name: activate to sort column ascending"
+                                                    style="width: 44.525px;"> Category Name
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Status: activate to sort column ascending"
+                                                    style="width: 40.35px;">Status
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Action: activate to sort column ascending"
+                                                    style="width: 54.4875px;">Action
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr class="odd" th:each="item : ${categoryList}">
+                                                <td th:text="${item.categoryId}"></td>
+                                                <td th:text="${item.categoryName}"></td>
+                                                <td th:text="${item.categoryStatus?'Active':'Inactive'}"></td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <a th:href="@{/admin/category/changeStatus/{categoryId}(categoryId=${item.categoryId})}"><button type="button" class="btn " th:classappend="${item.categoryStatus?'btn-outline-danger':'btn-outline-success'}"   th:text="${item.categoryStatus ? 'Block' : 'Unblock'}" >Block
+                                                        </button></a>
+                                                        <a type="button" th:href="@{/admin/category/edit/{id}(id=${item.categoryId})}" class="btn btn-outline-warning" >Edit</a>
+                                                    </div>
+<!--                                                    <a th:href="@{/admin/category/edit/{id}(id=${item.categoryId})}">-->
+<!--                                                        <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">-->
+<!--                                                            <span class="sr-only">Info</span>-->
+<!--                                                        </button>-->
+<!--                                                    </a>-->
+
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="row justify-content-between bottom-information">
+                                            <div class="dataTables_info" id="responsive-data-table_info" role="status"
+                                                 aria-live="polite">Showing 1 to 10 of 10 entries
+                                            </div>
+                                            <div class="dataTables_paginate paging_simple_numbers"
+                                                 id="responsive-data-table_paginate">
+                                                <ul class="pagination">
+                                                    <li class="paginate_button page-item previous disabled"
+                                                        id="responsive-data-table_previous"><a href="#"
+                                                                                               aria-controls="responsive-data-table"
+                                                                                               data-dt-idx="0"
+                                                                                               tabindex="0"
+                                                                                               class="page-link">Previous</a>
+                                                    </li>
+                                                    <li class="paginate_button page-item active"><a href="#"
+                                                                                                    aria-controls="responsive-data-table"
+                                                                                                    data-dt-idx="1"
+                                                                                                    tabindex="0"
+                                                                                                    class="page-link">1</a>
+                                                    </li>
+                                                    <li class="paginate_button page-item next disabled"
+                                                        id="responsive-data-table_next"><a href="#"
+                                                                                           aria-controls="responsive-data-table"
+                                                                                           data-dt-idx="2" tabindex="0"
+                                                                                           class="page-link">Next</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End Content -->
+        </div> <!-- End Content Wrapper -->
+
+        <!-- Footer -->
+        <th:block th:insert="admin/layouts/footer.html"></th:block>
+
+
+    </div> <!-- End Page Wrapper -->
+
+</div> <!-- End Wrapper -->
+
+<!-- Common Javascript -->
+<th:block th:insert="admin/layouts/script.html"></th:block>
 
 </body>
 </html>
+

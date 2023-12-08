@@ -29,10 +29,10 @@ public class CategoryController {
         return "admin/category/sub-category";
     }
 
-    @GetMapping("add-category")
-    public String add(Model model) {
-        return "admin/category/sub-category";
-    }
+//    @GetMapping("add-category")
+//    public String add(Model model) {
+//        return "admin/category/sub-category";
+//    }
 
     @PostMapping("/add-category")
     public String add(@ModelAttribute("add-category") Category category, RedirectAttributes redirectAttributes) {
@@ -42,9 +42,24 @@ public class CategoryController {
         return "redirect:/admin/sub-category";
     }
 
-    @GetMapping("category/changeStatus/{id}")
-    public String changeStatus(@PathVariable("id") Integer id){
+    @GetMapping("/category/changeStatus/{categoryId}")
+    public String changeStatus(@PathVariable("categoryId") Integer id) {
         categoryService.changeStatus(id);
-        return "redirect:/admin/category/sub-category";
+        return "redirect:/admin/sub-category";
+    }
+
+    @GetMapping("/category/edit/{id}")
+    public String edit(@PathVariable("id") Integer id, Model model) {
+        Category cat = categoryService.findById(id);
+        List<Category> categories=categoryService.findAll();
+        model.addAttribute("category", cat);
+        model.addAttribute("categoryList", categories);
+        return "admin/category/sub-category";
+    }
+
+    @PostMapping("edit-category")
+    public String update(@ModelAttribute("category") Category category){
+        categoryService.saveOrUpdate(category);
+        return "redirect:/admin/sub-category";
     }
 }
