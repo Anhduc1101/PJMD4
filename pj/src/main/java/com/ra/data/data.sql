@@ -70,7 +70,7 @@ end //
 delimiter //
 create procedure proc_add_new_user(in uName varchar(255), uEmail varchar(255), uPassword varchar(255))
 begin
-    insert into user(name, email, password ) values (uName, uEmail, uPassword);
+    insert into user(name, email, password) values (uName, uEmail, uPassword);
 end //
 
 drop procedure proc_add_new_user;
@@ -107,8 +107,75 @@ begin
 end //
 
 delimiter //
-create procedure  proc_find_user_by_email(in uEmail varchar(255))
+create procedure proc_find_user_by_email(in uEmail varchar(255))
 begin
     select * from user where email = uEmail;
 end //
 
+create table product
+(
+    id          int auto_increment primary key,
+    name        varchar(255) not null,
+    category_id int,
+    foreign key (category_id) references category (id),
+    description varchar(255),
+    price       double check ( price > 0 ),
+    stock       int check ( stock > 0 ),
+    status      bit(1) default 1
+);
+
+delimiter //
+create procedure proc_show_list_product()
+begin
+    select * from product;
+end //
+
+delimiter //
+create procedure proc_add_new_product(in pName varchar(255), pCatId int, des varchar(255), pPrice double, pStock int)
+begin
+    insert into product(name, category_id, description, price, stock) values (pName, pCatId, des, pPrice, pStock);
+end //
+
+delimiter //
+create procedure proc_update_product(in pName varchar(255), pCatId int, des varchar(255), pPrice double, pStock int,
+                                     pStatus bit(1), pId int)
+begin
+    update product
+    set name=pName,
+        category_id=pCatId,
+        description=des,
+        price=pPrice,
+        stock=pStock,
+        status=pStatus
+    where id = pId;
+end //
+
+delimiter //
+create procedure proc_change_status_product(in pId int)
+begin
+    update product set status=status ^ 1 where id = pId;
+end //
+
+delimiter //
+create procedure proc_find_product_by_name(in pName varchar(255))
+begin
+    select * from product where name = pName;
+end //
+
+delimiter //
+create procedure proc_find_product_by_id(in pId int)
+begin
+    select * from category where id = pId;
+end //
+
+delimiter //
+create procedure proc_sort_product()
+begin
+    select * from product order by name;
+end //
+
+delimiter //
+create procedure proc_delete_product(in pId int)
+begin
+    delete from product where id = pId;
+end //

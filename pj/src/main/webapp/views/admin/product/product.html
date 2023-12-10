@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- Mirrored from maraviyainfotech.com/projects/ekka/ekka-v36/ekka-admin/product-add.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Dec 2023 03:41:57 GMT -->
+<th:block th:insert="admin/layouts/head.html"></th:block>
+
+<body class="ec-header-fixed ec-sidebar-fixed ec-sidebar-dark ec-header-light" id="body">
+
+<!-- WRAPPER -->
+<div class="wrapper">
+
+    <!-- LEFT MAIN SIDEBAR -->
+    <th:block th:insert="admin/layouts/sidebar.html"></th:block>
+
+
+    <!-- PAGE WRAPPER -->
+    <div class="ec-page-wrapper">
+
+        <!-- Header -->
+        <th:block th:insert="admin/layouts/header.html"></th:block>
+
+
+        <!-- CONTENT WRAPPER -->
+<!--        <div class="ec-content-wrapper">-->
+<!--            <div class="content">-->
+<!--                <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">-->
+<!--                    <div>-->
+<!--                        <h1>Add Product</h1>-->
+<!--                        <p class="breadcrumbs"><span><a th:href="@{/}">Home</a></span>-->
+<!--                            <span><i class="mdi mdi-chevron-right"></i></span>Product</p>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <a href="../../../../../../../ekka/maraviyainfotech.com/projects/ekka/ekka-v36/ekka-admin/product-list.html" class="btn btn-primary"> View All-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                    <div class="col-12">-->
+<!--                        <div class="card card-default">-->
+<!--                            <div class="card-header card-header-border-bottom">-->
+<!--                                <h2>Add Product</h2>-->
+<!--                            </div>-->
+
+<!--                            <div class="card-body">-->
+<!--                                <div class="row ec-vendor-uploads">-->
+<!--                                    <div class="col-lg-4">-->
+<!--                                        <div class="ec-vendor-img-upload">-->
+<!--                                            <div class="ec-vendor-main-img">-->
+<!--                                                <div class="avatar-upload">-->
+<!--                                                    <div class="avatar-edit">-->
+<!--                                                        <input type='file' id="imageUpload" class="ec-image-upload"-->
+<!--                                                               accept=".png, .jpg, .jpeg" />-->
+<!--                                                        <label for="imageUpload"><img-->
+<!--                                                                th:src="@{/assets/img/icons/edit.svg}"-->
+<!--                                                                class="svg_img header_svg" alt="edit" /></label>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="avatar-preview ec-preview">-->
+<!--                                                        <div class="imagePreview ec-div-preview">-->
+<!--                                                            <img class="ec-image-preview"-->
+<!--                                                                 th:src="@{/assets/img/products/vender-upload-preview.jpg}"-->
+<!--                                                                 alt="edit" />-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="thumb-upload-set colo-md-12">-->
+<!--                                                    <div class="thumb-upload">-->
+<!--                                                        <div class="thumb-edit">-->
+<!--                                                            <input type='file' id="thumbUpload01"-->
+<!--                                                                   class="ec-image-upload"-->
+<!--                                                                   accept=".png, .jpg, .jpeg" />-->
+<!--                                                            <label for="imageUpload"><img-->
+<!--                                                                    th:src="@{/../../../../../../../ekka/maraviyainfotech.com/projects/ekka/ekka-v36/ekka-admin/assets/img/icons/edit.svg}"-->
+<!--                                                                    class="svg_img header_svg" alt="edit" /></label>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="thumb-preview ec-preview">-->
+<!--                                                            <div class="image-thumb-preview">-->
+<!--                                                                <img class="image-thumb-preview ec-image-preview"-->
+<!--                                                                     th:src="@{/img/products/vender-upload-thumb-preview.jpg}"-->
+<!--                                                                     alt="edit" />-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="thumb-upload">-->
+<!--                                                        <div class="thumb-edit">-->
+<!--                                                            <input type='file' id="thumbUpload02"-->
+<!--                                                                   class="ec-image-upload"-->
+<!--                                                                   accept=".png, .jpg, .jpeg" />-->
+<!--                                                            <label for="imageUpload"><img-->
+<!--                                                                    th:src="@{/img/icons/edit.svg}"-->
+<!--                                                                    class="svg_img header_svg" alt="edit" /></label>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="thumb-preview ec-preview">-->
+<!--                                                            <div class="image-thumb-preview">-->
+<!--                                                                <img class="image-thumb-preview ec-image-preview"-->
+<!--                                                                     th:src="@{/img/products/vender-upload-thumb-preview.jpg}"-->
+<!--                                                                     alt="edit" />-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="thumb-upload">-->
+<!--                                                        <div class="thumb-edit">-->
+<!--                                                            <input type='file' id="thumbUpload03"-->
+<!--                                                                   class="ec-image-upload"-->
+<!--                                                                   accept=".png, .jpg, .jpeg" />-->
+<!--                                                            <label for="imageUpload"><img-->
+<!--                                                                    th:src="@{/img/icons/edit.svg}"-->
+<!--                                                                    class="svg_img header_svg" alt="edit" /></label>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="thumb-preview ec-preview">-->
+<!--                                                            <div class="image-thumb-preview">-->
+<!--                                                                <img class="image-thumb-preview ec-image-preview"-->
+<!--                                                                     th:src="@{/img/products/vender-upload-thumb-preview.jpg}"-->
+<!--                                                                     alt="edit" />-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="thumb-upload">-->
+<!--                                                        <div class="thumb-edit">-->
+<!--                                                            <input type='file' id="thumbUpload04"-->
+<!--                                                                   class="ec-image-upload"-->
+<!--                                                                   accept=".png, .jpg, .jpeg" />-->
+<!--                                                            <label for="imageUpload"><img-->
+<!--                                                                    th:src="@{/img/icons/edit.svg}"-->
+<!--                                                                    class="svg_img header_svg" alt="edit" /></label>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="thumb-preview ec-preview">-->
+<!--                                                            <div class="image-thumb-preview">-->
+<!--                                                                <img class="image-thumb-preview ec-image-preview"-->
+<!--                                                                     th:src="@{/img/products/vender-upload-thumb-preview.jpg}"-->
+<!--                                                                     alt="edit" />-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="thumb-upload">-->
+<!--                                                        <div class="thumb-edit">-->
+<!--                                                            <input type='file' id="thumbUpload05"-->
+<!--                                                                   class="ec-image-upload"-->
+<!--                                                                   accept=".png, .jpg, .jpeg" />-->
+<!--                                                            <label for="imageUpload"><img-->
+<!--                                                                    th:src="@{/img/icons/edit.svg}"-->
+<!--                                                                    class="svg_img header_svg" alt="edit" /></label>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="thumb-preview ec-preview">-->
+<!--                                                            <div class="image-thumb-preview">-->
+<!--                                                                <img class="image-thumb-preview ec-image-preview"-->
+<!--                                                                     th:src="@{/img/products/vender-upload-thumb-preview.jpg}"-->
+<!--                                                                     alt="edit" />-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="thumb-upload">-->
+<!--                                                        <div class="thumb-edit">-->
+<!--                                                            <input type='file' id="thumbUpload06"-->
+<!--                                                                   class="ec-image-upload"-->
+<!--                                                                   accept=".png, .jpg, .jpeg" />-->
+<!--                                                            <label for="imageUpload"><img-->
+<!--                                                                    th:src="@{/img/icons/edit.svg}"-->
+<!--                                                                    class="svg_img header_svg" alt="edit" /></label>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="thumb-preview ec-preview">-->
+<!--                                                            <div class="image-thumb-preview">-->
+<!--                                                                <img class="image-thumb-preview ec-image-preview"-->
+<!--                                                                     th:src="@{/img/products/vender-upload-thumb-preview.jpg}"-->
+<!--                                                                     alt="edit" />-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-lg-8">-->
+<!--                                        <div class="ec-vendor-upload-detail">-->
+<!--                                            <form class="row g-3">-->
+<!--                                                <div class="col-md-6">-->
+<!--                                                    <label for="inputEmail4" class="form-label">Product name</label>-->
+<!--                                                    <input type="text" class="form-control slug-title" id="inputEmail4">-->
+<!--                                                </div>-->
+<!--                                                <div class="col-md-6">-->
+<!--                                                    <label class="form-label">Select Categories</label>-->
+<!--                                                    <select name="categories" id="Categories" class="form-select">-->
+<!--                                                        <optgroup label="Fashion">-->
+<!--                                                            <option value="t-shirt">T-shirt</option>-->
+<!--                                                            <option value="dress">Dress</option>-->
+<!--                                                        </optgroup>-->
+<!--                                                        <optgroup label="Furniture">-->
+<!--                                                            <option value="table">Table</option>-->
+<!--                                                            <option value="sofa">Sofa</option>-->
+<!--                                                        </optgroup>-->
+<!--                                                        <optgroup label="Electronic">-->
+<!--                                                            <option value="phone">I Phone</option>-->
+<!--                                                            <option value="laptop">Laptop</option>-->
+<!--                                                        </optgroup>-->
+<!--                                                    </select>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <label for="slug" class="col-12 col-form-label">Slug</label>-->
+<!--                                                    <div class="col-12">-->
+<!--                                                        <input id="slug" name="slug" class="form-control here set-slug" type="text">-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <label class="form-label">Sort Description</label>-->
+<!--                                                    <textarea class="form-control" rows="2"></textarea>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-md-4 mb-25">-->
+<!--                                                    <label class="form-label">Colors</label>-->
+<!--                                                    <input type="color" class="form-control form-control-color"-->
+<!--                                                           id="exampleColorInput1" value="#ff6191"-->
+<!--                                                           title="Choose your color">-->
+<!--                                                    <input type="color" class="form-control form-control-color"-->
+<!--                                                           id="exampleColorInput2" value="#33317d"-->
+<!--                                                           title="Choose your color">-->
+<!--                                                    <input type="color" class="form-control form-control-color"-->
+<!--                                                           id="exampleColorInput3" value="#56d4b7"-->
+<!--                                                           title="Choose your color">-->
+<!--                                                    <input type="color" class="form-control form-control-color"-->
+<!--                                                           id="exampleColorInput4" value="#009688"-->
+<!--                                                           title="Choose your color">-->
+<!--                                                </div>-->
+<!--                                                <div class="col-md-8 mb-25">-->
+<!--                                                    <label class="form-label">Size</label>-->
+<!--                                                    <div class="form-checkbox-box">-->
+<!--                                                        <div class="form-check form-check-inline">-->
+<!--                                                            <input type="checkbox" name="size1" value="size">-->
+<!--                                                            <label>S</label>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="form-check form-check-inline">-->
+<!--                                                            <input type="checkbox" name="size1" value="size">-->
+<!--                                                            <label>M</label>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="form-check form-check-inline">-->
+<!--                                                            <input type="checkbox" name="size1" value="size">-->
+<!--                                                            <label>L</label>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="form-check form-check-inline">-->
+<!--                                                            <input type="checkbox" name="size1" value="size">-->
+<!--                                                            <label>XL</label>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="form-check form-check-inline">-->
+<!--                                                            <input type="checkbox" name="size1" value="size">-->
+<!--                                                            <label>XXL</label>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-md-6">-->
+<!--                                                    <label class="form-label">Price <span>( In USD-->
+<!--																)</span></label>-->
+<!--                                                    <input type="number" class="form-control" id="price1">-->
+<!--                                                </div>-->
+<!--                                                <div class="col-md-6">-->
+<!--                                                    <label class="form-label">Quantity</label>-->
+<!--                                                    <input type="number" class="form-control" id="quantity1">-->
+<!--                                                </div>-->
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <label class="form-label">Ful Detail</label>-->
+<!--                                                    <textarea class="form-control" rows="4"></textarea>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <label class="form-label">Product Tags <span>( Type and-->
+<!--																make comma to separate tags )</span></label>-->
+<!--                                                    <input type="text" class="form-control" id="group_tag"-->
+<!--                                                           name="group_tag" value="" placeholder=""-->
+<!--                                                           data-role="tagsinput" />-->
+<!--                                                </div>-->
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--                                                </div>-->
+<!--                                            </form>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div> &lt;!&ndash; End Content &ndash;&gt;-->
+<!--        </div> &lt;!&ndash; End Content Wrapper &ndash;&gt;-->
+
+        <div class="ec-content-wrapper">
+            <div class="content">
+                <div class="breadcrumb-wrapper breadcrumb-wrapper-2 breadcrumb-contacts">
+                    <h1>Product</h1>
+                    <p class="breadcrumbs"><span><a th:href="@{/}">Home</a></span>
+                        <span><i class="mdi mdi-chevron-right"></i></span>Product</p>
+                </div>
+                <div class="row">
+<!--                    <div class="col-xl-4 col-lg-12">-->
+<!--                        <div class="ec-cat-list card card-default mb-24px">-->
+<!--                            <div class="card-body" th:if="${product.productId==0}">-->
+<!--                                <div class="ec-cat-form">-->
+<!--                                    <h4>Add New Product</h4>-->
+
+<!--                                    <form action="add-product" method="post" th:object="${product}">-->
+<!--                                        <div class="form-group row">-->
+<!--                                            <label class="col-12 col-form-label">Product Name:</label>-->
+<!--                                            <div class="col-12">-->
+<!--                                                <input th:field="*{productName}" name="productName"-->
+<!--                                                       class="form-control here slug-title" type="text"-->
+<!--                                                       placeholder="Enter here ..."/>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-group row">-->
+<!--                                            <label class="col-12 col-form-label">Price:</label>-->
+<!--                                            <div class="col-12">-->
+<!--                                                <input th:field="*{pro}" name="productName"-->
+<!--                                                       class="form-control here slug-title" type="text"-->
+<!--                                                       placeholder="Enter here ..."/>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-group row">-->
+<!--                                            <div class="col-md-6">&ndash;&gt;-->
+<!--                                                <label class="col-12 col-form-label">Select Categories: </label>-->
+<!--                                                <select name="categories" id="Categories" class="form-select">-->
+<!--                                                    <optgroup label="Fashion">-->
+<!--                                                        <option value="t-shirt">T-shirt</option>-->
+<!--                                                        <option value="dress">Dress</option>-->
+<!--                                                    </optgroup>-->
+<!--                                                    <optgroup label="Furniture">-->
+<!--                                                        <option value="table">Table</option>-->
+<!--                                                        <option value="sofa">Sofa</option>-->
+<!--                                                    </optgroup>-->
+<!--                                                    <optgroup label="Electronic">-->
+<!--                                                        <option value="phone">I Phone</option>-->
+<!--                                                        <option value="laptop">Laptop</option>-->
+<!--                                                    </optgroup>-->
+<!--                                                </select>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--&lt;!&ndash;                                        <div class="form-group row">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <label class="col-12 col-form-label">Product Status:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <input type="radio" th:field="*{producStatus}" name="categoryStatus"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                       checked="checked" value="1"/>Active&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <input type="radio" th:field="*{categoryStatus}" name="categoryStatus"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                       value="0"/>Inactive&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-12">-->
+<!--                                                <button name="submit" type="submit" class="btn btn-primary">Submit-->
+<!--                                                </button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                    </form>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="card-body" th:unless="${category.categoryId==0}">-->
+<!--                                <div class="ec-cat-form">-->
+<!--                                    <h4>Update Category</h4>-->
+
+<!--                                    <form action="/admin/edit-category" method="post" th:object="${category}">-->
+<!--                                        <div class="form-group row">-->
+<!--                                            <label class="col-12 col-form-label">Category ID:</label>-->
+<!--                                            <div class="col-12">-->
+<!--                                                <input th:field="*{categoryId}" name="categoryId"-->
+<!--                                                       class="form-control here slug-title" type="text"-->
+<!--                                                       readonly/>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                        <div class="form-group row">-->
+<!--                                            <label class="col-12 col-form-label">Category Name:</label>-->
+<!--                                            <div class="col-12">-->
+<!--                                                <input th:field="*{categoryName}" name="categoryName"-->
+<!--                                                       class="form-control here slug-title" type="text"-->
+<!--                                                       placeholder="Enter here ..."/>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-group row">-->
+<!--                                            <label class="col-12 col-form-label">Category Status:</label>-->
+<!--                                            <div>-->
+<!--                                                <input type="radio" th:field="*{categoryStatus}" name="categoryStatus"-->
+<!--                                                       checked="checked" value="1"/>Active-->
+<!--                                            </div>-->
+<!--                                            <div>-->
+<!--                                                <input type="radio" th:field="*{categoryStatus}" name="categoryStatus"-->
+<!--                                                       value="0"/>Inactive-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-12">-->
+<!--                                                <button name="submit" type="submit" class="btn btn-primary">Submit-->
+<!--                                                </button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                    </form>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+                    <div class="col-xl-8 col-lg-12">
+                        <div class="ec-cat-list card card-default">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <div id="responsive-data-table_wrapper"
+                                         class="dataTables_wrapper dt-bootstrap5 no-footer">
+                                        <div class="row justify-content-between top-information">
+                                            <div class="dataTables_length" id="responsive-data-table_length"><label>Show
+                                                <select name="responsive-data-table_length"
+                                                        aria-controls="responsive-data-table"
+                                                        class="form-select form-select-sm">
+                                                    <option value="20">20</option>
+                                                    <option value="30">30</option>
+                                                    <option value="50">50</option>
+                                                    <option value="75">75</option>
+                                                    <option value="-1">All</option>
+                                                </select> entries</label></div>
+                                            <div id="responsive-data-table_filter" class="dataTables_filter"><label>Search:<input
+                                                    type="search" class="form-control form-control-sm" placeholder=""
+                                                    aria-controls="responsive-data-table"></label></div>
+                                        </div>
+                                        <table id="responsive-data-table" class="table dataTable no-footer"
+                                               aria-describedby="responsive-data-table_info">
+                                            <thead>
+                                            <tr>
+
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Name: activate to sort column ascending"
+                                                    style="width: 44.525px;"> No.
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Name: activate to sort column ascending"
+                                                    style="width: 44.525px;"> Category Name
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Status: activate to sort column ascending"
+                                                    style="width: 40.35px;">Status
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="responsive-data-table"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Action: activate to sort column ascending"
+                                                    style="width: 54.4875px;">Action
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr class="odd" th:each="item : ${productList}">
+                                                <td th:text="${item.productId}"></td>
+                                                <td th:text="${item.productName}"></td>
+                                                <td th:text="${item.pro}"></td>
+                                                <td th:text="${item.categoryName}"></td>
+                                                <td th:text="${item.categoryName}"></td>
+                                                <td th:text="${item.categoryName}"></td>
+                                                <td th:text="${item.categoryStatus?'Active':'Inactive'}"></td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <a th:href="@{/admin/category/changeStatus/{categoryId}(categoryId=${item.categoryId})}"><button type="button" class="btn " th:classappend="${item.categoryStatus?'btn-outline-danger':'btn-outline-success'}"   th:text="${item.categoryStatus ? 'Block' : 'Unblock'}" >Block
+                                                        </button></a>
+                                                        <a type="button" th:href="@{/admin/category/edit/{id}(id=${item.categoryId})}" class="btn btn-outline-warning" >Edit</a>
+                                                    </div>
+                                                    <!--                                                    <a th:href="@{/admin/category/edit/{id}(id=${item.categoryId})}">-->
+                                                    <!--                                                        <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">-->
+                                                    <!--                                                            <span class="sr-only">Info</span>-->
+                                                    <!--                                                        </button>-->
+                                                    <!--                                                    </a>-->
+
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="row justify-content-between bottom-information">
+                                            <div class="dataTables_info" id="responsive-data-table_info" role="status"
+                                                 aria-live="polite">Showing 1 to 10 of 10 entries
+                                            </div>
+                                            <div class="dataTables_paginate paging_simple_numbers"
+                                                 id="responsive-data-table_paginate">
+                                                <ul class="pagination">
+                                                    <li class="paginate_button page-item previous disabled"
+                                                        id="responsive-data-table_previous"><a href="#"
+                                                                                               aria-controls="responsive-data-table"
+                                                                                               data-dt-idx="0"
+                                                                                               tabindex="0"
+                                                                                               class="page-link">Previous</a>
+                                                    </li>
+                                                    <li class="paginate_button page-item active"><a href="#"
+                                                                                                    aria-controls="responsive-data-table"
+                                                                                                    data-dt-idx="1"
+                                                                                                    tabindex="0"
+                                                                                                    class="page-link">1</a>
+                                                    </li>
+                                                    <li class="paginate_button page-item next disabled"
+                                                        id="responsive-data-table_next"><a href="#"
+                                                                                           aria-controls="responsive-data-table"
+                                                                                           data-dt-idx="2" tabindex="0"
+                                                                                           class="page-link">Next</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End Content -->
+        </div> <!-- End Content Wrapper -->
+
+        <!-- Footer -->
+        <th:block th:insert="admin/layouts/footer.html"></th:block>
+
+
+    </div> <!-- End Page Wrapper -->
+</div> <!-- End Wrapper -->
+
+<!-- Common Javascript -->
+<th:block th:insert="admin/layouts/script.html"></th:block>
+
+</body>
+
+
+<!-- Mirrored from maraviyainfotech.com/projects/ekka/ekka-v36/ekka-admin/product-add.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Dec 2023 03:41:58 GMT -->
+</html>

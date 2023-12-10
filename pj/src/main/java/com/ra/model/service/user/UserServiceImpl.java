@@ -46,8 +46,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(String email, String password) {
         User user = userDAO.checkEmail(email);
+
         if (user != null) {
+            System.out.println(BCrypt.checkpw(password,user.getPassword()));
             if (BCrypt.checkpw(password,user.getPassword())) {
+                // tu pass nhâp vao với pass trong database so sanh ra false kìa
                 return user;
             }
         }

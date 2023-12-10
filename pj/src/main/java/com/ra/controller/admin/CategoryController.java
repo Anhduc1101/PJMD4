@@ -12,9 +12,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("admin")
-// show
-// add
-//
+
 
 public class CategoryController {
     @Autowired
@@ -29,10 +27,6 @@ public class CategoryController {
         return "admin/category/sub-category";
     }
 
-//    @GetMapping("add-category")
-//    public String add(Model model) {
-//        return "admin/category/sub-category";
-//    }
 
     @PostMapping("/add-category")
     public String add(@ModelAttribute("add-category") Category category, RedirectAttributes redirectAttributes) {
