@@ -57,8 +57,4 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-//    @Override
-//    public User checkEmail(String email) {
-//        return userDAO.checkEmail(email);
-//    }
 }

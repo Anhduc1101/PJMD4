@@ -8,101 +8,120 @@
 
 <body class="ec-header-fixed ec-sidebar-fixed ec-sidebar-dark ec-header-light" id="body">
 
-	<!-- WRAPPER -->
-	<div class="wrapper">
+<!-- WRAPPER -->
+<div class="wrapper">
 
-		<!-- LEFT MAIN SIDEBAR -->
-		<th:block th:insert="admin/layouts/sidebar.html"></th:block>
-
-
-		<!-- PAGE WRAPPER -->
-		<div class="ec-page-wrapper">
-
-			<!-- Header -->
-			<th:block th:insert="admin/layouts/header.html"></th:block>
+    <!-- LEFT MAIN SIDEBAR -->
+    <th:block th:insert="admin/layouts/sidebar.html"></th:block>
 
 
-			<!-- CONTENT WRAPPER -->
-			<div class="ec-content-wrapper">
-				<div class="content">
-					<div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
-						<div>
-							<h1>Product</h1>
-							<p class="breadcrumbs"><span><a th:href="@{/}">Home</a></span>
-								<span><i class="mdi mdi-chevron-right"></i></span>Product</p>
-						</div>
-						<div>
-							<a th:href="@{/admin/add-product}" class="btn btn-primary"> Add Product</a>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-12">
-							<div class="card card-default">
-								<div class="card-body">
-									<div class="table-responsive">
-										<table id="responsive-data-table" class="table"
-											style="width:100%">
-											<thead>
-												<tr>
-													<th>STT</th>
-													<th>Img</th>
-													<th>Pro. Name</th>
-													<th>Cat. Name</th>
-													<th>Description</th>
-													<th>Price</th>
-													<th>Stock</th>
-													<th>Status</th>
-													<th colspan="3">Action</th>
-												</tr>
-											</thead>
+    <!-- PAGE WRAPPER -->
+    <div class="ec-page-wrapper">
 
-											<tbody>
-												<tr th:each="item:${productList}">
-													<td th:text="${item.productId}"></td>
-													<td th:text="${item.img}"><img class="tbl-thumb" th:src="@{/img/products/p1.jpg}" alt="Product Image" /></td>
-													<td th:text="${item.productName}"></td>
-													<td th:text="${item.category.categoryName}"></td>
-													<td th:text="${item.description}"></td>
-													<td th:text="${item.unitPrice}"></td>
-													<td th:text="${item.stock}"></td>
-													<td th:text="${item.status?'Active':'Inactive'}"></td>
-													<td>
-														<div class="btn-group mb-1">
-															<button type="button" class="btn btn-outline-success">Block</button>
-															<button type="button"
-																class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-																data-bs-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false" data-display="static">
-																<span class="sr-only">Info</span>
-															</button>
-
-															<div class="dropdown-menu">
-																<a class="dropdown-item" th:href="@{/admin/product/edit-product/{id}(id=${item.productId})}">Edit</a>
-																<a class="dropdown-item" href="#">Delete</a>
-															</div>
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> <!-- End Content -->
-			</div> <!-- End Content Wrapper -->
+        <!-- Header -->
+        <th:block th:insert="admin/layouts/header.html"></th:block>
 
 
-			<!-- Footer -->
-			<th:block th:insert="admin/layouts/footer.html"></th:block>
+        <!-- CONTENT WRAPPER -->
+        <div class="ec-content-wrapper">
+            <div class="content">
+                <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+                    <div>
+                        <h1>Product</h1>
+                        <p class="breadcrumbs"><span><a th:href="@{/}">Home</a></span>
+                            <span><i class="mdi mdi-chevron-right"></i></span>Product</p>
+                    </div>
+                    <div>
+                        <a th:href="@{/admin/add-product}" class="btn btn-primary"> Add Product</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-default">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="responsive-data-table" class="table"
+                                           style="width:100%">
+                                        <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Img</th>
+                                            <th>Pro. Name</th>
+                                            <th>Cat. Name</th>
+                                            <th>Description</th>
+                                            <th>Price</th>
+                                            <th>Stock</th>
+                                            <th>Status</th>
+                                            <th colspan="3">Action</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <tr th:each="item:${productList}">
+                                            <td th:text="${item.productId}"></td>
+                                            <td th:text="${item.img}"><img class="tbl-thumb"
+                                                                           th:src="@{/img/products/p1.jpg}"
+                                                                           alt="Product Image"/></td>
+                                            <td th:text="${item.productName}"></td>
+                                            <td th:text="${item.category.categoryName}"></td>
+                                            <td th:text="${item.description}"></td>
+                                            <td th:text="${item.unitPrice}"></td>
+                                            <td th:text="${item.stock}"></td>
+                                            <td th:text="${item.status?'Active':'Inactive'}" th:style="${item.status?'color:RGB(79, 208, 165)':'color:red'}"></td>
+                                            <td>
+                                                <div class="btn-group mb-1">
+<!--                                                    <button type="button" class="btn"-->
+<!--                                                            th:classappend="${item.status?'btn-outline-danger':'btn-outline-success'}"-->
+<!--                                                            th:text="${item.status?'Block':'Unblock'}"><a-->
+<!--                                                            th:href="@{/admin/product/changeStatus/{id}(id=${item.productId})}">Block</a>-->
+<!--                                                    </button>-->
+<!--                                                    <button type="button" class="btn"-->
+<!--                                                            th:classappend="${item.status?'btn-outline-danger':'btn-outline-success'}"-->
+<!--                                                            th:text="${item.status?'Block':'Unblock'}"-->
+<!--                                                            onclick="window.location.href='@{/admin/product/changeStatus/{id}(id=' + ${item.productId} + ')}'">-->
+<!--                                                    </button>-->
+                                                    <a th:href="@{/admin/product/changeStatus/{id}(id=${item.productId})}">
+                                                        <button type="button" class="btn"
+                                                                th:classappend="${item.status?'btn-outline-danger':'btn-outline-success'}"
+                                                                th:text="${item.status?'Block':'Unblock'}">Block
+                                                        </button>
+                                                    </a>
+                                                    <button type="button"
+                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false" data-display="static">
+                                                        <span class="sr-only">Info</span>
+                                                    </button>
+
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item"
+                                                           th:href="@{/admin/product/edit-product/{id}(id=${item.productId})}">Edit</a>
+                                                        <a class="dropdown-item"
+                                                           th:href="@{/admin/product/delete-product/{id}(id=${item.productId})}">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End Content -->
+        </div> <!-- End Content Wrapper -->
 
 
-		</div> <!-- End Page Wrapper -->
-	</div> <!-- End Wrapper -->
+        <!-- Footer -->
+        <th:block th:insert="admin/layouts/footer.html"></th:block>
 
-	<!-- Common Javascript -->
-	<th:block th:insert="admin/layouts/script.html"></th:block>
+
+    </div> <!-- End Page Wrapper -->
+</div> <!-- End Wrapper -->
+
+<!-- Common Javascript -->
+<th:block th:insert="admin/layouts/script.html"></th:block>
 
 </body>
 

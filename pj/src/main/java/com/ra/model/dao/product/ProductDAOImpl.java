@@ -52,16 +52,16 @@ public class ProductDAOImpl implements ProductDAO {
         try {
             if (product.getProductId() == 0) {
                 cs = con.prepareCall("call proc_add_new_product(?,?,?,?,?,?,?)");
-                cs.setString(1,product.getImg());
+                cs.setString(1, product.getImg());
                 cs.setString(2, product.getProductName());
                 cs.setInt(3, product.getCategory().getCategoryId());
                 cs.setString(4, product.getDescription());
                 cs.setDouble(5, product.getUnitPrice());
                 cs.setInt(6, product.getStock());
-                cs.setBoolean(7,product.isStatus());
+                cs.setBoolean(7, product.isStatus());
             } else {
                 cs = con.prepareCall("call proc_update_product(?,?,?,?,?,?,?,?)");
-                cs.setString(1,product.getImg());
+                cs.setString(1, product.getImg());
                 cs.setString(2, product.getProductName());
                 cs.setInt(3, product.getCategory().getCategoryId());
                 cs.setString(4, product.getDescription());
@@ -76,7 +76,7 @@ public class ProductDAOImpl implements ProductDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             ConnectionDB.closeCon(con);
         }
         return false;
@@ -142,6 +142,20 @@ public class ProductDAOImpl implements ProductDAO {
             cs.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void changeStatus(Integer id) {
+        Connection con = ConnectionDB.openCon();
+        try {
+            CallableStatement cs = con.prepareCall("call proc_change_status_product(?)");
+            cs.setInt(1, id);
+            cs.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDB.closeCon(con);
         }
     }
 }

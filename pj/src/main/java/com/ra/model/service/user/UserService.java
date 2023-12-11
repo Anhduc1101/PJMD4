@@ -6,6 +6,5 @@ import com.ra.model.service.IGenericService;
 public interface UserService extends IGenericService<User,Integer> {
     void changeUserStatus(Integer id);
     void changeUserRole(Integer id);
-//    User checkEmail(String email);
     User login(String email, String password);
 }

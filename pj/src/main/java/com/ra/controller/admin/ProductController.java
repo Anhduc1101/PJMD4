@@ -23,7 +23,6 @@ public class ProductController {
     public String product_add(Model model) {
         List<Product> products = productService.findAll();
         model.addAttribute("productList", products);
-
         return "admin/product/product-list";
     }
 
@@ -60,14 +59,24 @@ public class ProductController {
         model.addAttribute("pro",pro);
         List<Category> categories = categoryService.findAll();
         model.addAttribute("category",categories);
-//        List<Product> products = productService.findAll();
-//        model.addAttribute("products",products);
         return "admin/product/edit-product";
     }
 
     @PostMapping("/product/edit-product")
     public String update_product(@ModelAttribute("product") Product product){
         productService.saveOrUpdate(product);
+        return "redirect:/admin/product-list";
+    }
+
+    @GetMapping("/product/delete-product/{id}")
+    public String delete(@PathVariable("id") Integer id){
+        productService.delete(id);
+        return "redirect:/admin/product-list";
+    }
+
+    @GetMapping("/product/changeStatus/{id}")
+    public String changeStatus(@PathVariable("id") Integer id){
+        productService.changeStatus(id);
         return "redirect:/admin/product-list";
     }
 }

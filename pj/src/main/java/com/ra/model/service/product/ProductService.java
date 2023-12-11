@@ -5,4 +5,5 @@ import com.ra.model.service.IGenericService;
 
 public interface ProductService extends IGenericService<Product,Integer> {
     void delete (Integer id);
+    void changeStatus(Integer id);
 }

@@ -5,4 +5,5 @@ import com.ra.model.entity.Product;
 
 public interface ProductDAO extends IGenericDAO<Product,Integer> {
     void delete(Integer id);
+    void changeStatus(Integer id);
 }

@@ -47,7 +47,7 @@ public class UserDAOImpl implements UserDAO {
         int check;
         try {
             if (user.getUserId() == 0) {
-                String hashPass= BCrypt.hashpw(user.getPassword(),BCrypt.gensalt(12));
+                String hashPass = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12));
                 cs = con.prepareCall("call proc_add_new_user(?,?,?)");
                 cs.setString(1, user.getUserName());
                 cs.setString(2, user.getEmail());
@@ -152,12 +152,13 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User checkEmail(String email) {
         Connection connection = ConnectionDB.openCon();
-        User user = new User();
+        User user = null;
         try {
             CallableStatement cs = connection.prepareCall("call proc_find_user_by_email(?)");
-            cs.setString(1,email);
+            cs.setString(1, email);
             ResultSet rs = cs.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
+                user = new User();
                 user.setUserId(rs.getInt("id"));
                 user.setUserName(rs.getString("name"));
                 user.setPassword(rs.getString("password"));
@@ -167,7 +168,7 @@ public class UserDAOImpl implements UserDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             ConnectionDB.closeCon(connection);
         }
         return user;
