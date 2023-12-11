@@ -172,15 +172,33 @@
                                                 <td th:text="${item.categoryStatus?'Active':'Inactive'}"></td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <a th:href="@{/admin/category/changeStatus/{categoryId}(categoryId=${item.categoryId})}"><button type="button" class="btn " th:classappend="${item.categoryStatus?'btn-outline-danger':'btn-outline-success'}"   th:text="${item.categoryStatus ? 'Block' : 'Unblock'}" >Block
-                                                        </button></a>
-                                                        <a type="button" th:href="@{/admin/category/edit/{id}(id=${item.categoryId})}" class="btn btn-outline-warning" >Edit</a>
+                                                        <a th:href="@{/admin/category/edit/{id}(id=${item.categoryId})}">
+                                                            <button type="button" class="btn btn-outline-warning">Edit
+                                                            </button>
+                                                        </a>
+                                                        <a th:href="@{/admin/category/changeStatus/{categoryId}(categoryId=${item.categoryId})}">
+                                                            <button type="button" class="btn" style="border-radius: 0 15px 15px 0 !important;"
+                                                                    th:classappend="${item.categoryStatus?'btn-outline-danger':'btn-outline-success'}"
+                                                                    th:text="${item.categoryStatus ? 'Block' : 'Unblock'}">
+                                                            </button>
+                                                        </a>
                                                     </div>
-<!--                                                    <a th:href="@{/admin/category/edit/{id}(id=${item.categoryId})}">-->
-<!--                                                        <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">-->
-<!--                                                            <span class="sr-only">Info</span>-->
-<!--                                                        </button>-->
-<!--                                                    </a>-->
+<!--                                                <td>-->
+<!--                                                    <div class="btn-group mb-1 ">-->
+<!--                                                        <a th:href="@{/admin/category/edit/{id}(id=${item.categoryId})}">-->
+<!--                                                            <button type="button"-->
+<!--                                                                    class="btn btn-outline-primary mr-2">Change Role-->
+<!--                                                            </button>-->
+<!--                                                        </a>-->
+<!--                                                        <a th:href="@{/admin/users/changeStatus/{id}(id=${item.categoryId})}">-->
+<!--                                                            <button type="button"-->
+<!--                                                                    class="btn"-->
+<!--                                                                    th:classappend="${item.categoryStatus?'btn-outline-danger':'btn-outline-success'}"-->
+<!--                                                                    th:text="${item.categoryStatus?'Block':'Unblock'}">Block-->
+<!--                                                            </button>-->
+<!--                                                        </a>-->
+<!--                                                    </div>-->
+<!--                                                </td>-->
 
                                                 </td>
                                             </tr>

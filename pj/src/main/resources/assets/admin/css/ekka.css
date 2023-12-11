@@ -11668,7 +11668,7 @@ textarea.form-control-lg {
 }
 .ec-vendor-uploads .ec-vendor-upload-detail form input {
   width: 100%;
-  margin-bottom: 30px;
+  /*margin-bottom: 30px;*/
   padding: 0 15px;
   border-radius: 0;
   border: 1px solid #eeeeee !important;
@@ -24021,10 +24021,10 @@ table.dataTable td .btn-group button {
   padding: 3px 10px;
 }
 table.dataTable td .btn-group button:first-child {
-  border-radius: 15px 0 0 15px !important;
+  border-radius: 15px 0 0 15px ;
 }
 table.dataTable td .btn-group button:nth-last-child(-n+2) {
-  /*border-radius: 0 15px 15px 0 !important;*/
+  border-radius: 0 15px 15px 0 ;
 }
 
 .ec-tbl .ec-tbl-content {

@@ -36,8 +36,8 @@ public class CategoryController {
         return "redirect:/admin/sub-category";
     }
 
-    @GetMapping("/category/changeStatus/{categoryId}")
-    public String changeStatus(@PathVariable("categoryId") Integer id) {
+    @GetMapping("/category/changeStatus/{id}")
+    public String changeStatus(@PathVariable("id") Integer id) {
         categoryService.changeStatus(id);
         return "redirect:/admin/sub-category";
     }
