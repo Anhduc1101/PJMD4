@@ -2,18 +2,20 @@ package com.ra.model.entity;
 
 public class Product {
     private int productId;
-private String productName;
-private Category category;
-private String description;
-private double unitPrice;
-private int stock;
-private boolean status;
+    private String img;
+    private String productName;
+    private Category category;
+    private String description;
+    private double unitPrice;
+    private int stock;
+    private boolean status;
 
     public Product() {
     }
 
-    public Product(int productId, String productName, Category category, String description, double unitPrice, int stock, boolean status) {
+    public Product(int productId, String img, String productName, Category category, String description, double unitPrice, int stock, boolean status) {
         this.productId = productId;
+        this.img = img;
         this.productName = productName;
         this.category = category;
         this.description = description;
@@ -28,6 +30,14 @@ private boolean status;
 
     public void setProductId(int productId) {
         this.productId = productId;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getProductName() {

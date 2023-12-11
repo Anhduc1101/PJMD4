@@ -44,10 +44,10 @@ public class CategoryController {
 
     @GetMapping("/category/edit/{id}")
     public String edit(@PathVariable("id") Integer id, Model model) {
+//        List<Category> categories=categoryService.findAll();
+//        model.addAttribute("categoryList", categories);
         Category cat = categoryService.findById(id);
-        List<Category> categories=categoryService.findAll();
         model.addAttribute("category", cat);
-        model.addAttribute("categoryList", categories);
         return "admin/category/sub-category";
     }
 

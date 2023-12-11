@@ -51,20 +51,24 @@ public class ProductDAOImpl implements ProductDAO {
         int check;
         try {
             if (product.getProductId() == 0) {
-                cs = con.prepareCall("call proc_add_new_product(?,?,?,?,?)");
-                cs.setString(1, product.getProductName());
-                cs.setInt(2, product.getCategory().getCategoryId());
-                cs.setString(3, product.getDescription());
-                cs.setDouble(4, product.getUnitPrice());
-                cs.setInt(5, product.getStock());
+                cs = con.prepareCall("call proc_add_new_product(?,?,?,?,?,?,?)");
+                cs.setString(1,product.getImg());
+                cs.setString(2, product.getProductName());
+                cs.setInt(3, product.getCategory().getCategoryId());
+                cs.setString(4, product.getDescription());
+                cs.setDouble(5, product.getUnitPrice());
+                cs.setInt(6, product.getStock());
+                cs.setBoolean(7,product.isStatus());
             } else {
-                cs = con.prepareCall("call proc_update_product(?,?,?,?,?,?,?)");
-                cs.setString(1, product.getProductName());
-                cs.setInt(2, product.getCategory().getCategoryId());
-                cs.setString(3, product.getDescription());
-                cs.setDouble(4, product.getUnitPrice());
-                cs.setInt(5, product.getStock());
-                cs.setInt(6, product.getProductId());
+                cs = con.prepareCall("call proc_update_product(?,?,?,?,?,?,?,?)");
+                cs.setString(1,product.getImg());
+                cs.setString(2, product.getProductName());
+                cs.setInt(3, product.getCategory().getCategoryId());
+                cs.setString(4, product.getDescription());
+                cs.setDouble(5, product.getUnitPrice());
+                cs.setInt(6, product.getStock());
+                cs.setBoolean(7, product.isStatus());
+                cs.setInt(8, product.getProductId());
             }
             check = cs.executeUpdate();
             if (check > 0) {

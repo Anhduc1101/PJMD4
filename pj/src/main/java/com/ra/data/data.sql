@@ -115,6 +115,7 @@ end //
 create table product
 (
     id          int auto_increment primary key,
+    img varchar(255),
     name        varchar(255) not null,
     category_id int,
     foreign key (category_id) references category (id),
@@ -123,7 +124,7 @@ create table product
     stock       int check ( stock > 0 ),
     status      bit(1) default 1
 );
-
+drop table  product;
 delimiter //
 create procedure proc_show_list_product()
 begin
@@ -131,17 +132,18 @@ begin
 end //
 
 delimiter //
-create procedure proc_add_new_product(in pName varchar(255), pCatId int, des varchar(255), pPrice double, pStock int)
+create procedure proc_add_new_product(in pImg varchar(255), pName varchar(255), pCatId int, des varchar(255), pPrice double, pStock int,pStatus bit(1))
 begin
-    insert into product(name, category_id, description, price, stock) values (pName, pCatId, des, pPrice, pStock);
+    insert into product(img,name, category_id, description, price, stock,status) values (pImg,pName, pCatId, des, pPrice, pStock,pStatus);
 end //
 
 delimiter //
-create procedure proc_update_product(in pName varchar(255), pCatId int, des varchar(255), pPrice double, pStock int,
+create procedure proc_update_product(in pImg varchar(255), pName varchar(255), pCatId int, des varchar(255), pPrice double, pStock int,
                                      pStatus bit(1), pId int)
 begin
     update product
-    set name=pName,
+    set img=pImg,
+        name=pName,
         category_id=pCatId,
         description=des,
         price=pPrice,
