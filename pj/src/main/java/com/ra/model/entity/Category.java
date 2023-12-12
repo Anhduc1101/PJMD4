@@ -1,7 +1,10 @@
 package com.ra.model.entity;
 
+import javax.validation.constraints.NotEmpty;
+
 public class Category {
     private int categoryId;
+    @NotEmpty(message = "Can not be blank")
     private String categoryName;
     private boolean categoryStatus;
 

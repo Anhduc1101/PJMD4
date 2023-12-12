@@ -46,7 +46,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(String email, String password) {
         User user = userDAO.checkEmail(email);
-
         if (user != null) {
             System.out.println(BCrypt.checkpw(password,user.getPassword()));
             if (BCrypt.checkpw(password,user.getPassword())) {
@@ -55,6 +54,13 @@ public class UserServiceImpl implements UserService {
             }
         }
         return null;
+    }
+
+    @Override
+    public boolean register(User user) {
+User user1=new User();
+//user1.
+        return false;
     }
 
 }

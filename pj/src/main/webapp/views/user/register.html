@@ -133,26 +133,28 @@
                     <div class="ec-register-container">
                         <div class="ec-register-form">
                             <form action="register" method="post" th:object="${user}">
-                                <span class="ec-register-wrap ec-register-half">
+                                <span class="ec-register-wrap ec-register-half" style="margin-bottom: 20px !important;">
                                     <label>User Name*</label>
-                                    <input type="text" th:field="*{userName}" name="name" placeholder="Enter your name..." required />
+                                    <input style="margin-bottom: 10px !important;" type="text" th:field="*{userName}"  name="name" placeholder="Enter your name..."  />
+<!--                                   <small  class="form-text text-danger" th:errors="*{userName}" ></small>-->
                                 </span>
-                                <span class="ec-register-wrap ec-register-half">
-                                    <label>Password*</label>
-                                    <input type="password" th:field="*{password}" name="password" placeholder="Enter your password..." required />
-                                </span>
-                                <span class="ec-register-wrap ec-register-half">
+                                <span class="ec-register-wrap ec-register-half" style="margin-bottom: 20px !important;">
                                     <label>Email*</label>
-                                    <input type="email" th:field="*{email}" name="email" placeholder="Enter your email ..." required />
+                                    <input style="margin-bottom: 10px !important;" type="text" th:field="*{email}"  th:classappend="${#fields.hasErrors('email')} ? 'border-danger'" name="email" placeholder="Enter your email ..."  />
+                                    <small style="margin-bottom:5px " class="form-text text-danger" th:errors="*{email}"></small>
                                 </span>
-                                <span class="ec-register-wrap ec-register-half">
-                                    <label>Confirm Password*</label>
-                                    <input type="password"  name="confirmPassword" placeholder="Confirm password..."
-                                        required />
+                                <span class="ec-register-wrap ec-register-half" style="margin-bottom: 20px !important;">
+                                    <label>Phone:</label>
+                                    <input style="margin-bottom: 10px !important;" type="text" th:field="*{phone}"   name="tel" placeholder="Enter your phone number..."/>
+                                </span>
+                                <span class="ec-register-wrap ec-register-half" style="margin-bottom: 20px !important;">
+                                    <label>Password*</label>
+                                    <input style="margin-bottom: 10px !important;" type="password" th:field="*{password}"  th:classappend="${#fields.hasErrors('password')} ? 'border-danger'" name="password" placeholder="Enter your password..."  />
+                                    <small class="form-text text-danger" th:errors="*{password}"></small>
                                 </span>
                                 <span class="ec-register-wrap ec-register-btn">
                                     <button class="btn btn-primary" type="submit">Register</button>
-                                    <a class="btn btn-primary" th:href="@{/login}">Login</a>
+                                    <a class="btn btn-secondary" th:href="@{/login}">Login</a>
                                 </span>
                             </form>
                         </div>

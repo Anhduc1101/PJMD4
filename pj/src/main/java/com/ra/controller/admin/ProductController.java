@@ -1,19 +1,28 @@
 package com.ra.controller.admin;
 
+import com.ra.controller.UploadController;
 import com.ra.model.entity.Category;
 import com.ra.model.entity.Product;
 import com.ra.model.service.category.CategoryService;
 import com.ra.model.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 
 @Controller
 @RequestMapping("admin")
 public class ProductController {
+    @Value("D:\\duc\\mySQL\\projectMD4\\pj\\src\\main\\webapp\\uploads\\")
+    private String path;
     @Autowired
     private ProductService productService;
     @Autowired
@@ -47,36 +56,46 @@ public class ProductController {
 
 
     @PostMapping("/add-product")
-    public String handleAdd(@ModelAttribute ("product")  Product product) {
+    public String handleAdd(@ModelAttribute("product") Product product ,@RequestParam("images") MultipartFile file) {
+        String fileName = file.getOriginalFilename();
+        File destination = new File(path + fileName);
+        try {
+            Files.write(destination.toPath(), file.getBytes(), StandardOpenOption.CREATE);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        product.setImg(fileName);
         productService.saveOrUpdate(product);
         System.out.println(product);
         return "redirect:/admin/product-list";
     }
 
     @GetMapping("/product/edit-product/{id}")
-    public String edit_product(@PathVariable("id") Integer id, Model model){
+    public String edit_product(@PathVariable("id") Integer id, Model model) {
         Product pro = productService.findById(id);
-        model.addAttribute("pro",pro);
+        model.addAttribute("pro", pro);
         List<Category> categories = categoryService.findAll();
-        model.addAttribute("category",categories);
+        model.addAttribute("category", categories);
         return "admin/product/edit-product";
     }
 
     @PostMapping("/product/edit-product")
-    public String update_product(@ModelAttribute("product") Product product){
+    public String update_product(@ModelAttribute("product") Product product) {
         productService.saveOrUpdate(product);
         return "redirect:/admin/product-list";
     }
 
     @GetMapping("/product/delete-product/{id}")
-    public String delete(@PathVariable("id") Integer id){
+    public String delete(@PathVariable("id") Integer id) {
         productService.delete(id);
         return "redirect:/admin/product-list";
     }
 
     @GetMapping("/product/changeStatus/{id}")
-    public String changeStatus(@PathVariable("id") Integer id){
+    public String changeStatus(@PathVariable("id") Integer id) {
         productService.changeStatus(id);
         return "redirect:/admin/product-list";
     }
+
+
 }

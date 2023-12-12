@@ -1,21 +1,30 @@
 package com.ra.model.entity;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 public class User {
     private int userId;
+//    @NotEmpty(message = "Can not be blank")
     private String userName;
+    @Email(message = "Incorrect email format")
+    @NotEmpty(message = "Can not be blank")
     private String email;
+    @NotEmpty(message = "Can not be blank")
     private String password;
+    private String phone;
     private boolean role;
     private boolean status;
 
     public User() {
     }
 
-    public User(int userId, String userName, String email, String password, boolean role, boolean status) {
+    public User(int userId, String userName, String email, String password,String phone, boolean role, boolean status) {
         this.userId = userId;
         this.userName = userName;
         this.email = email;
         this.password = password;
+        this.phone = phone;
         this.role = role;
         this.status = status;
     }
@@ -50,6 +59,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone(){
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public boolean isRole() {

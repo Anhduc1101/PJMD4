@@ -19,7 +19,7 @@ import java.nio.file.StandardOpenOption;
 @Controller
 @PropertySource("classpath:config.properties")
 public class UploadController {
-    @Value("${path}")
+    @Value("D:\\duc\\mySQL\\projectMD4\\pj\\src\\main\\webapp\\uploads\\")
     private String path;
     @Autowired
     ServletContext servletContext;

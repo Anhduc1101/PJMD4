@@ -59,9 +59,7 @@
                                         <tbody>
                                         <tr th:each="item:${productList}">
                                             <td th:text="${item.productId}"></td>
-                                            <td th:text="${item.img}"><img class="tbl-thumb"
-                                                                           th:src="@{/img/products/p1.jpg}"
-                                                                           alt="Product Image"/></td>
+                                            <td><img width="45" height="45" th:src="@{|/uploads/${item.img}|}"></td>
                                             <td th:text="${item.productName}"></td>
                                             <td th:text="${item.category.categoryName}"></td>
                                             <td th:text="${item.description}"></td>

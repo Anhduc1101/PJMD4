@@ -32,6 +32,7 @@ public class ProductDAOImpl implements ProductDAO {
                 pro.setCategory(categoryService.findById(rs.getInt("category_id")));
                 pro.setDescription(rs.getString("description"));
                 pro.setUnitPrice(rs.getDouble("price"));
+                pro.setImg(rs.getString("img"));
                 pro.setStock(rs.getInt("stock"));
                 pro.setStatus(rs.getBoolean("status"));
                 products.add(pro);

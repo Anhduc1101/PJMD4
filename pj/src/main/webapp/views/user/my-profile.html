@@ -1,0 +1,559 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:insert="layouts/head.html"></th:block>
+<body class="shop_page">
+<div id="ec-overlay">
+  <div class="ec-ellipsis">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<!-- Header start  -->
+<th:block th:insert="layouts/header.html"></th:block>
+<!-- Header End  -->
+
+<!-- ekka Cart Start -->
+<div class="ec-side-cart-overlay"></div>
+<div id="ec-side-cart" class="ec-side-cart">
+  <div class="ec-cart-inner">
+    <div class="ec-cart-top">
+      <div class="ec-cart-title">
+        <span class="cart_title">My Cart</span>
+        <button class="ec-close">×</button>
+      </div>
+      <ul class="eccart-pro-items">
+        <li>
+          <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                  src="assets/images/product-image/6_1.jpg" alt="product"></a>
+          <div class="ec-pro-content">
+            <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
+            <span class="cart-price"><span>$76.00</span> x 1</span>
+            <div class="qty-plus-minus">
+              <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+            </div>
+            <a href="javascript:void(0)" class="remove">×</a>
+          </div>
+        </li>
+        <li>
+          <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                  src="assets/images/product-image/12_1.jpg" alt="product"></a>
+          <div class="ec-pro-content">
+            <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
+            <span class="cart-price"><span>$64.00</span> x 1</span>
+            <div class="qty-plus-minus">
+              <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+            </div>
+            <a href="javascript:void(0)" class="remove">×</a>
+          </div>
+        </li>
+        <li>
+          <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                  src="assets/images/product-image/3_1.jpg" alt="product"></a>
+          <div class="ec-pro-content">
+            <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
+            <span class="cart-price"><span>$59.00</span> x 1</span>
+            <div class="qty-plus-minus">
+              <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+            </div>
+            <a href="javascript:void(0)" class="remove">×</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="ec-cart-bottom">
+      <div class="cart-sub-total">
+        <table class="table cart-table">
+          <tbody>
+          <tr>
+            <td class="text-left">Sub-Total :</td>
+            <td class="text-right">$300.00</td>
+          </tr>
+          <tr>
+            <td class="text-left">VAT (20%) :</td>
+            <td class="text-right">$60.00</td>
+          </tr>
+          <tr>
+            <td class="text-left">Total :</td>
+            <td class="text-right primary-color">$360.00</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cart_btn">
+        <a href="cart.html" class="btn btn-primary">View Cart</a>
+        <a href="checkout.html" class="btn btn-secondary">Checkout</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ekka Cart End -->
+
+<!-- Ec breadcrumb start -->
+<div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="row ec_breadcrumb_inner">
+          <div class="col-md-6 col-sm-12">
+            <h2 class="ec-breadcrumb-title">User Profile</h2>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <!-- ec-breadcrumb-list start -->
+            <ul class="ec-breadcrumb-list">
+              <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
+              <li class="ec-breadcrumb-item active">Profile</li>
+            </ul>
+            <!-- ec-breadcrumb-list end -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Ec breadcrumb end -->
+
+<!-- User profile section -->
+<section class="ec-page-content ec-vendor-uploads ec-user-account section-space-p">
+  <div class="container">
+    <div class="row">
+      <!-- Sidebar Area Start -->
+      <div class="ec-shop-leftside ec-vendor-sidebar col-lg-3 col-md-12">
+        <div class="ec-sidebar-wrap ec-border-box">
+          <!-- Sidebar Category Block -->
+          <div class="ec-sidebar-block">
+            <div class="ec-vendor-block">
+              <!-- <div class="ec-vendor-block-bg"></div>
+              <div class="ec-vendor-block-detail">
+                  <img class="v-img" src="assets/images/user/1.jpg" alt="vendor image">
+                  <h5>Mariana Johns</h5>
+              </div> -->
+              <div class="ec-vendor-block-items">
+                <ul>
+<!--                  <li><a href="user-profile.html">User Profile</a></li>-->
+                  <li><a href="user-history.html">History</a></li>
+                  <li><a href="wishlist.html">Wishlist</a></li>
+                  <li><a href="cart.html">Cart</a></li>
+                  <li><a href="checkout.html">Checkout</a></li>
+<!--                  <li><a href="track-order.html">Track Order</a></li>-->
+<!--                  <li><a href="user-invoice.html">Invoice</a></li>-->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ec-shop-rightside col-lg-9 col-md-12">
+        <div class="ec-vendor-dashboard-card ec-vendor-setting-card">
+          <div class="ec-vendor-card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="ec-vendor-block-profile">
+                  <div class="ec-vendor-block-img space-bottom-30">
+                    <div class="ec-vendor-block-bg">
+                      <a href="#" class="btn btn-lg btn-primary"
+                         data-link-action="editmodal" title="Edit Detail"
+                         data-bs-toggle="modal" data-bs-target="#edit_modal">Edit Detail</a>
+                    </div>
+                    <div class="ec-vendor-block-detail">
+<!--                      <img class="v-img" src="assets/images/user/1.jpg" alt="vendor image">-->
+                      <h5 class="name">Mariana Johns</h5>
+<!--                      <p>( Business Man )</p>-->
+                    </div>
+                    <p>Hello <span>Mariana Johns!</span></p>
+                    <p>From your account you can easily view and track orders. You can manage and change your account information like address, contact information and history of orders.</p>
+                  </div>
+                  <h5>Account Information</h5>
+
+                  <div class="row" >
+                    <div class="col-md-6 col-sm-12">
+                      <div class="ec-vendor-detail-block ec-vendor-block-email space-bottom-30">
+                        <h6>E-mail address <a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#edit_modal"><i class="fi-rr-edit"></i></a></h6>
+                        <ul>
+                          <li><strong>Email 1 : </strong>support1@exapmle.com</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <div class="ec-vendor-detail-block ec-vendor-block-contact space-bottom-30">
+                        <h6>Contact number<a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#edit_modal"><i class="fi-rr-edit"></i></a></h6>
+                        <ul>
+                          <li><strong>Phone Nubmer 1 : </strong>(123) 123 456 7890</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <div class="ec-vendor-detail-block ec-vendor-block-address mar-b-30">
+                        <h6>User Name<a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#edit_modal"><i class="fi-rr-edit"></i></a></h6>
+                        <ul>
+                          <li><strong>User Name : </strong>123, 2150 Sycamore Street, dummy text of
+                            the, San Jose, California - 95131.</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <div class="ec-vendor-detail-block ec-vendor-block-address">
+                        <h6>Password<a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#edit_modal"><i class="fi-rr-edit"></i></a></h6>
+                        <ul>
+                          <li><strong>Office : </strong>123, 2150 Sycamore Street, dummy text of
+                            the, San Jose, California - 95131.</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End User profile section -->
+
+<!-- Footer Start -->
+<th:block th:insert="layouts/footer.html"></th:block>
+<!-- Footer Area End -->
+
+<!-- Modal -->
+<div class="modal fade" id="edit_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="ec-vendor-block-img space-bottom-30">
+            <div class="ec-vendor-block-bg cover-upload">
+              <div class="thumb-upload">
+                <div class="thumb-edit">
+                  <input type='file' id="thumbUpload01" class="ec-image-upload"
+                         accept=".png, .jpg, .jpeg" />
+                  <label><i class="fi-rr-edit"></i></label>
+                </div>
+                <div class="thumb-preview ec-preview">
+                  <div class="image-thumb-preview">
+                    <img class="image-thumb-preview ec-image-preview v-img"
+                         src="assets/images/banner/8.jpg" alt="edit" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ec-vendor-block-detail">
+              <div class="thumb-upload">
+                <div class="thumb-edit">
+                  <input type='file' id="thumbUpload02" class="ec-image-upload"
+                         accept=".png, .jpg, .jpeg" />
+                  <label><i class="fi-rr-edit"></i></label>
+                </div>
+                <div class="thumb-preview ec-preview">
+                  <div class="image-thumb-preview">
+                    <img class="image-thumb-preview ec-image-preview v-img"
+                         src="assets/images/user/1.jpg" alt="edit" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ec-vendor-upload-detail">
+              <form class="row g-3">
+                <div class="col-md-6 space-t-15">
+                  <label class="form-label">First name</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="col-md-6 space-t-15">
+                  <label class="form-label">Last name</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="col-md-12 space-t-15">
+                  <label class="form-label">Address 1</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="col-md-12 space-t-15">
+                  <label class="form-label">Address 2</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="col-md-12 space-t-15">
+                  <label class="form-label">Address 3</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="col-md-6 space-t-15">
+                  <label class="form-label">Email id 1</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="col-md-6 space-t-15">
+                  <label class="form-label">Email id 2</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="col-md-6 space-t-15">
+                  <label class="form-label">Phone number 1</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="col-md-6 space-t-15">
+                  <label class="form-label">Phone number 2</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="col-md-12 space-t-15">
+                  <button type="submit" class="btn btn-primary">Update</button>
+                  <a href="#" class="btn btn-lg btn-secondary qty_close" data-bs-dismiss="modal"
+                     aria-label="Close">Close</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal end -->
+
+<!-- Footer navigation panel for responsive display -->
+<div class="ec-nav-toolbar">
+  <div class="container">
+    <div class="ec-nav-panel">
+      <div class="ec-nav-panel-icons">
+        <a href="#ec-mobile-menu" class="navbar-toggler-btn ec-header-btn ec-side-toggle"><i
+                class="fi-rr-menu-burger"></i></a>
+      </div>
+      <div class="ec-nav-panel-icons">
+        <a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle"><i
+                class="fi-rr-shopping-bag"></i><span
+                class="ec-cart-noti ec-header-count cart-count-lable">3</span></a>
+      </div>
+      <div class="ec-nav-panel-icons">
+        <a href="index.html" class="ec-header-btn"><i class="fi-rr-home"></i></a>
+      </div>
+      <div class="ec-nav-panel-icons">
+        <a href="wishlist.html" class="ec-header-btn"><i class="fi-rr-heart"></i><span
+                class="ec-cart-noti">4</span></a>
+      </div>
+      <div class="ec-nav-panel-icons">
+        <a href="login.html" class="ec-header-btn"><i class="fi-rr-user"></i></a>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Footer navigation panel for responsive display end -->
+
+<!-- Recent Purchase Popup  -->
+<div class="recent-purchase">
+  <img src="assets/images/product-image/1.jpg" alt="payment image">
+  <div class="detail">
+    <p>Someone in new just bought</p>
+    <h6>stylish baby shoes</h6>
+    <p>10 Minutes ago</p>
+  </div>
+  <a href="javascript:void(0)" class="icon-btn recent-close">×</a>
+</div>
+<!-- Recent Purchase Popup end -->
+
+<!-- Cart Floating Button -->
+<div class="ec-cart-float">
+  <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
+    <div class="header-icon"><i class="fi-rr-shopping-basket"></i>
+    </div>
+    <span class="ec-cart-count cart-count-lable">3</span>
+  </a>
+</div>
+<!-- Cart Floating Button end -->
+
+<!-- Whatsapp -->
+<div class="ec-style ec-right-bottom">
+  <!-- Start Floating Panel Container -->
+  <div class="ec-panel">
+    <!-- Panel Header -->
+    <div class="ec-header">
+      <strong>Need Help?</strong>
+      <p>Chat with us on WhatsApp</p>
+    </div>
+    <!-- Panel Content -->
+    <div class="ec-body">
+      <ul>
+        <!-- Start Single Contact List -->
+        <li>
+          <a class="ec-list" data-number="918866774266"
+             data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
+            <div class="d-flex bd-highlight">
+              <!-- Profile Picture -->
+              <div class="ec-img-cont">
+                <img src="assets/images/whatsapp/profile_01.jpg" class="ec-user-img"
+                     alt="Profile image">
+                <span class="ec-status-icon"></span>
+              </div>
+              <!-- Display Name & Last Seen -->
+              <div class="ec-user-info">
+                <span>Sahar Darya</span>
+                <p>Sahar left 7 mins ago</p>
+              </div>
+              <!-- Chat iCon -->
+              <div class="ec-chat-icon">
+                <i class="fa fa-whatsapp"></i>
+              </div>
+            </div>
+          </a>
+        </li>
+        <!--/ End Single Contact List -->
+        <!-- Start Single Contact List -->
+        <li>
+          <a class="ec-list" data-number="918866774266"
+             data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
+            <div class="d-flex bd-highlight">
+              <!-- Profile Picture -->
+              <div class="ec-img-cont">
+                <img src="assets/images/whatsapp/profile_02.jpg" class="ec-user-img"
+                     alt="Profile image">
+                <span class="ec-status-icon ec-online"></span>
+              </div>
+              <!-- Display Name & Last Seen -->
+              <div class="ec-user-info">
+                <span>Yolduz Rafi</span>
+                <p>Yolduz is online</p>
+              </div>
+              <!-- Chat iCon -->
+              <div class="ec-chat-icon">
+                <i class="fa fa-whatsapp"></i>
+              </div>
+            </div>
+          </a>
+        </li>
+        <!--/ End Single Contact List -->
+        <!-- Start Single Contact List -->
+        <li>
+          <a class="ec-list" data-number="918866774266"
+             data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
+            <div class="d-flex bd-highlight">
+              <!-- Profile Picture -->
+              <div class="ec-img-cont">
+                <img src="assets/images/whatsapp/profile_03.jpg" class="ec-user-img"
+                     alt="Profile image">
+                <span class="ec-status-icon ec-offline"></span>
+              </div>
+              <!-- Display Name & Last Seen -->
+              <div class="ec-user-info">
+                <span>Nargis Hawa</span>
+                <p>Nargis left 30 mins ago</p>
+              </div>
+              <!-- Chat iCon -->
+              <div class="ec-chat-icon">
+                <i class="fa fa-whatsapp"></i>
+              </div>
+            </div>
+          </a>
+        </li>
+        <!--/ End Single Contact List -->
+        <!-- Start Single Contact List -->
+        <li>
+          <a class="ec-list" data-number="918866774266"
+             data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
+            <div class="d-flex bd-highlight">
+              <!-- Profile Picture -->
+              <div class="ec-img-cont">
+                <img src="assets/images/whatsapp/profile_04.jpg" class="ec-user-img"
+                     alt="Profile image">
+                <span class="ec-status-icon ec-offline"></span>
+              </div>
+              <!-- Display Name & Last Seen -->
+              <div class="ec-user-info">
+                <span>Khadija Mehr</span>
+                <p>Khadija left 50 mins ago</p>
+              </div>
+              <!-- Chat iCon -->
+              <div class="ec-chat-icon">
+                <i class="fa fa-whatsapp"></i>
+              </div>
+            </div>
+          </a>
+        </li>
+        <!--/ End Single Contact List -->
+      </ul>
+    </div>
+  </div>
+  <!--/ End Floating Panel Container -->
+  <!-- Start Right Floating Button-->
+  <div class="ec-right-bottom">
+    <div class="ec-box">
+      <div class="ec-button rotateBackward">
+        <img class="whatsapp" src="assets/images/common/whatsapp.png" alt="whatsapp icon" />
+      </div>
+    </div>
+  </div>
+  <!--/ End Right Floating Button-->
+</div>
+<!-- Whatsapp end -->
+
+<!-- Feature tools -->
+<div class="ec-tools-sidebar-overlay"></div>
+<div class="ec-tools-sidebar">
+  <div class="tool-title">
+    <h3>Features</h3>
+  </div>
+  <a href="#" class="ec-tools-sidebar-toggle in-out">
+    <img alt="icon" src="assets/images/common/settings.png" />
+  </a>
+  <div class="ec-tools-detail">
+    <div class="ec-tools-sidebar-content ec-change-color ec-color-desc">
+      <h3>Color Scheme</h3>
+      <ul class="bg-panel">
+        <li class="active" data-color="01"><a href="#" class="colorcode1"></a></li>
+        <li data-color="02"><a href="#" class="colorcode2"></a></li>
+        <li data-color="03"><a href="#" class="colorcode3"></a></li>
+        <li data-color="04"><a href="#" class="colorcode4"></a></li>
+        <li data-color="05"><a href="#" class="colorcode5"></a></li>
+      </ul>
+    </div>
+    <div class="ec-tools-sidebar-content">
+      <h3>Backgrounds</h3>
+      <ul class="bg-panel">
+        <li class="bg"><a class="back-bg-1" id="bg-1">Background-1</a></li>
+        <li class="bg"><a class="back-bg-2" id="bg-2">Background-2</a></li>
+        <li class="bg"><a class="back-bg-3" id="bg-3">Background-3</a></li>
+        <li class="bg"><a class="back-bg-4" id="bg-4">Default</a></li>
+      </ul>
+    </div>
+    <div class="ec-tools-sidebar-content">
+      <h3>Full Screen mode</h3>
+      <div class="ec-fullscreen-mode">
+        <div class="ec-fullscreen-switch">
+          <div class="ec-fullscreen-btn">Mode</div>
+          <div class="ec-fullscreen-on">On</div>
+          <div class="ec-fullscreen-off">Off</div>
+        </div>
+      </div>
+    </div>
+    <div class="ec-tools-sidebar-content">
+      <h3>Dark mode</h3>
+      <div class="ec-change-mode">
+        <div class="ec-mode-switch">
+          <div class="ec-mode-btn">Mode</div>
+          <div class="ec-mode-on">On</div>
+          <div class="ec-mode-off">Off</div>
+        </div>
+      </div>
+    </div>
+    <div class="ec-tools-sidebar-content">
+      <h3>RTL mode</h3>
+      <div class="ec-change-rtl">
+        <div class="ec-rtl-switch">
+          <div class="ec-rtl-btn">Rtl</div>
+          <div class="ec-rtl-on">On</div>
+          <div class="ec-rtl-off">Off</div>
+        </div>
+      </div>
+    </div>
+    <div class="ec-tools-sidebar-content">
+      <h3>Clear local storage</h3>
+      <a class="clear-cach" href="javascript:void(0)">Clear Cache & Default</a>
+    </div>
+  </div>
+</div>
+<!-- Feature tools end -->
+
+<!-- Vendor JS -->
+<th:block th:insert="layouts/script.html"></th:block>
+
+</body>
+</html>

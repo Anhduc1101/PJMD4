@@ -1,12 +1,18 @@
 package com.ra.model.entity;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class Product {
     private int productId;
     private String img;
+    @NotEmpty(message = "Can not be blank")
     private String productName;
     private Category category;
     private String description;
+    @Size(min = 0)
     private double unitPrice;
+    @Size(min = 0)
     private int stock;
     private boolean status;
 

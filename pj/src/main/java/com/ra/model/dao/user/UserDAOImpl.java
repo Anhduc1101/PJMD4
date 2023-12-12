@@ -28,6 +28,7 @@ public class UserDAOImpl implements UserDAO {
                 user.setUserName(rs.getString("name"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
+                user.setPhone(rs.getString("phone"));
                 user.setRole(rs.getBoolean("role"));
                 user.setStatus(rs.getBoolean("status"));
                 userList.add(user);
@@ -48,16 +49,18 @@ public class UserDAOImpl implements UserDAO {
         try {
             if (user.getUserId() == 0) {
                 String hashPass = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12));
-                cs = con.prepareCall("call proc_add_new_user(?,?,?)");
+                cs = con.prepareCall("call proc_add_new_user(?,?,?,?)");
                 cs.setString(1, user.getUserName());
                 cs.setString(2, user.getEmail());
                 cs.setString(3, hashPass);
+                cs.setString(4, user.getPhone());
             } else {
-                cs = con.prepareCall("call proc_update_user(?,?,?,?)");
+                cs = con.prepareCall("call proc_update_user(?,?,?,?,?)");
                 cs.setString(1, user.getUserName());
                 cs.setString(2, user.getEmail());
                 cs.setString(3, user.getPassword());
-                cs.setInt(4, user.getUserId());
+                cs.setString(4, user.getPhone());
+                cs.setInt(5, user.getUserId());
             }
             check = cs.executeUpdate();
             if (check > 0) {
@@ -85,6 +88,7 @@ public class UserDAOImpl implements UserDAO {
                 user.setUserName(rs.getString("name"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
+                user.setPhone(rs.getString("phone"));
                 user.setRole(rs.getBoolean("role"));
                 user.setStatus(rs.getBoolean("status"));
             }
@@ -110,6 +114,7 @@ public class UserDAOImpl implements UserDAO {
                 user.setUserName(rs.getString("name"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
+                user.setPhone(rs.getString("phone"));
                 user.setRole(rs.getBoolean("role"));
                 user.setStatus(rs.getBoolean("status"));
             }
@@ -161,8 +166,9 @@ public class UserDAOImpl implements UserDAO {
                 user = new User();
                 user.setUserId(rs.getInt("id"));
                 user.setUserName(rs.getString("name"));
-                user.setPassword(rs.getString("password"));
                 user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setPhone(rs.getString("phone"));
                 user.setStatus(rs.getBoolean("status"));
                 user.setRole(rs.getBoolean("role"));
             }
