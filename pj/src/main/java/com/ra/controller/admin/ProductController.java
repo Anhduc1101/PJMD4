@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -56,18 +59,25 @@ public class ProductController {
 
 
     @PostMapping("/add-product")
-    public String handleAdd(@ModelAttribute("product") Product product ,@RequestParam("images") MultipartFile file) {
-        String fileName = file.getOriginalFilename();
-        File destination = new File(path + fileName);
-        try {
-            Files.write(destination.toPath(), file.getBytes(), StandardOpenOption.CREATE);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public String handleAdd(@Valid @ModelAttribute("product") Product product, BindingResult result,RedirectAttributes attributes, Model model, @RequestParam("images") MultipartFile file ) {
+        if (result.hasErrors()) {
+            List<Category> categoryList = categoryService.findAll();
+            model.addAttribute("category", categoryList);
+            return "admin/product/add-product";
+        } else {
+            String fileName = file.getOriginalFilename();
+            File destination = new File(path + fileName);
+            try {
+                Files.write(destination.toPath(), file.getBytes(), StandardOpenOption.CREATE);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            product.setImg(fileName);
+            productService.saveOrUpdate(product);
+//            System.out.println(product);
+//            attributes.addFlashAttribute("mess", "Added New Product Successfully!!!");
+            return "redirect:/admin/product-list";
         }
-        product.setImg(fileName);
-        productService.saveOrUpdate(product);
-        System.out.println(product);
-        return "redirect:/admin/product-list";
     }
 
     @GetMapping("/product/edit-product/{id}")
@@ -80,9 +90,23 @@ public class ProductController {
     }
 
     @PostMapping("/product/edit-product")
-    public String update_product(@ModelAttribute("product") Product product) {
-        productService.saveOrUpdate(product);
-        return "redirect:/admin/product-list";
+    public String update_product(@Valid @ModelAttribute("product") Product product, BindingResult result, Model model, @RequestParam("images") MultipartFile file) {
+        if (result.hasErrors()) {
+            List<Category> categoryList = categoryService.findAll();
+            model.addAttribute("category", categoryList);
+            return "admin/product/edit-product";
+        } else {
+            String fileName = file.getOriginalFilename();
+            File destination = new File(path + fileName);
+            try {
+                Files.write(destination.toPath(), file.getBytes(), StandardOpenOption.CREATE);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            product.setImg(fileName);
+            productService.saveOrUpdate(product);
+            return "redirect:/admin/product-list";
+        }
     }
 
     @GetMapping("/product/delete-product/{id}")

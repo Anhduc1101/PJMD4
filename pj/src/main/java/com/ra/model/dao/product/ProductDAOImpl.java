@@ -99,6 +99,7 @@ public class ProductDAOImpl implements ProductDAO {
                 pro.setUnitPrice(rs.getDouble("price"));
                 pro.setStock(rs.getInt("stock"));
                 pro.setStatus(rs.getBoolean("status"));
+                pro.setImg(rs.getString("img"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -125,6 +126,7 @@ public class ProductDAOImpl implements ProductDAO {
                 pro.setUnitPrice(rs.getDouble("price"));
                 pro.setStock(rs.getInt("stock"));
                 pro.setStatus(rs.getBoolean("status"));
+                pro.setImg(rs.getString("img"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -1,5 +1,6 @@
 package com.ra.model.entity;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -10,9 +11,9 @@ public class Product {
     private String productName;
     private Category category;
     private String description;
-    @Size(min = 0)
+//    @Min(value = 0, message = "Price must be greater than 0")
     private double unitPrice;
-    @Size(min = 0)
+//    @Min(value = 0,message = "Stock must be greater than 0")
     private int stock;
     private boolean status;
 

@@ -35,6 +35,9 @@
                         <a th:href="@{/admin/add-product}" class="btn btn-primary"> Add Product</a>
                     </div>
                 </div>
+<!--                <div th:if="${mess != null}" th:style="${'color:green'}" class="alert mb&#45;&#45;15" role="alert">-->
+<!--                    <strong><span th:text="${mess}"></span></strong>-->
+<!--                </div>-->
                 <div class="row">
                     <div class="col-12">
                         <div class="card card-default">
@@ -59,7 +62,7 @@
                                         <tbody>
                                         <tr th:each="item:${productList}">
                                             <td th:text="${item.productId}"></td>
-                                            <td><img width="45" height="45" th:src="@{|/uploads/${item.img}|}"></td>
+                                            <td><img width="35" height="35" th:src="@{|/uploads/${item.img}|}"></td>
                                             <td th:text="${item.productName}"></td>
                                             <td th:text="${item.category.categoryName}"></td>
                                             <td th:text="${item.description}"></td>
@@ -69,16 +72,6 @@
                                                 th:style="${item.status?'color:RGB(79, 208, 165)':'color:red'}"></td>
                                             <td>
                                                 <div class="btn-group mb-1">
-                                                    <!--                                                    <button type="button" class="btn"-->
-                                                    <!--                                                            th:classappend="${item.status?'btn-outline-danger':'btn-outline-success'}"-->
-                                                    <!--                                                            th:text="${item.status?'Block':'Unblock'}"><a-->
-                                                    <!--                                                            th:href="@{/admin/product/changeStatus/{id}(id=${item.productId})}">Block</a>-->
-                                                    <!--                                                    </button>-->
-                                                    <!--                                                    <button type="button" class="btn"-->
-                                                    <!--                                                            th:classappend="${item.status?'btn-outline-danger':'btn-outline-success'}"-->
-                                                    <!--                                                            th:text="${item.status?'Block':'Unblock'}"-->
-                                                    <!--                                                            onclick="window.location.href='@{/admin/product/changeStatus/{id}(id=' + ${item.productId} + ')}'">-->
-                                                    <!--                                                    </button>-->
                                                     <a  th:href="@{/admin/product/edit-product/{id}(id=${item.productId})}">
                                                         <button type="button" class="btn btn-outline-warning" style="border-radius:  15px 0 0 15px  !important;padding: 3px 10px !important;">Edit
                                                         </button>
@@ -93,15 +86,6 @@
                                                         </button>
                                                     </a>
 
-<!--                                                    <button type="button"-->
-<!--                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"-->
-<!--                                                            data-bs-toggle="dropdown" aria-haspopup="true"-->
-<!--                                                            aria-expanded="false" data-display="static">-->
-<!--                                                        <span class="sr-only">Info</span>-->
-<!--                                                    </button>-->
-
-<!--                                                    <div class="dropdown-menu">-->
-<!--                                                    </div>-->
                                                 </div>
                                             </td>
                                         </tr>

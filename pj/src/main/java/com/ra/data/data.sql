@@ -122,8 +122,8 @@ create table product
     category_id int,
     foreign key (category_id) references category (id),
     description varchar(255),
-    price       double check ( price > 0 ),
-    stock       int check ( stock > 0 ),
+    price       double ,
+    stock       int,
     status      bit(1) default 1
 );
 drop table product;

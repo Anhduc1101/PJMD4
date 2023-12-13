@@ -29,50 +29,48 @@
                     <p class="breadcrumbs"><span><a th:href="@{/}">Home</a></span>
                         <span><i class="mdi mdi-chevron-right"></i></span>Category</p>
                 </div>
+                <div th:if="${mess != null}" th:style="${'color:green'}" class="alert mb--15" role="alert">
+                    <strong><span th:text="${mess}"></span></strong>
+                </div>
                 <div class="row">
                     <div class="col-xl-4 col-lg-12">
                         <div class="ec-cat-list card card-default mb-24px">
                             <div class="card-body" th:if="${category.categoryId==0}">
                                 <div class="ec-cat-form">
                                     <h4>Add New Category</h4>
-
                                     <form action="add-category" method="post" th:object="${category}">
-
                                         <div class="form-group row">
                                             <label class="col-12 col-form-label">Category Name:</label>
                                             <div class="col-12">
                                                 <input th:field="*{categoryName}" name="categoryName"
                                                        class="form-control here slug-title" type="text"
                                                        placeholder="Enter here ..."/>
+<!--                                                <small style="padding-top:10px;font-size: 15px; color: red !important;"-->
+<!--                                                       class="form-text text-danger"-->
+<!--                                                       th:errors="*{categoryName}"></small>-->
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row" style="display: flex !important;">
                                             <label class="col-12 col-form-label">Category Status:</label>
-                                            <div>
-                                                <input type="radio" th:field="*{categoryStatus}" name="categoryStatus"
-                                                       checked="checked" value="1"/>Active
-                                            </div>
-                                            <div>
-                                                <input type="radio" th:field="*{categoryStatus}" name="categoryStatus"
-                                                       value="0"/>Inactive
-                                            </div>
+                                            <input type="radio" th:field="*{categoryStatus}" name="categoryStatus"
+                                                   checked="checked" value="1"/>Active
+                                            <input type="radio" th:field="*{categoryStatus}" name="categoryStatus"
+                                                   value="0"/>Inactive
                                         </div>
-
                                         <div class="row">
                                             <div class="col-12">
                                                 <button name="submit" type="submit" class="btn btn-primary">Submit
                                                 </button>
                                             </div>
                                         </div>
-
                                     </form>
 
                                 </div>
                             </div>
+
                             <div class="card-body" th:unless="${category.categoryId==0}">
                                 <div class="ec-cat-form">
                                     <h4>Update Category</h4>
-
                                     <form action="/admin/edit-category" method="post" th:object="${category}">
                                         <div class="form-group row">
                                             <label class="col-12 col-form-label">Category ID:</label>
@@ -83,24 +81,22 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group row">
+                                        <div class="form-group row" >
                                             <label class="col-12 col-form-label">Category Name:</label>
                                             <div class="col-12">
                                                 <input th:field="*{categoryName}" name="categoryName"
                                                        class="form-control here slug-title" type="text"
                                                        placeholder="Enter here ..."/>
+                                                <small style="padding-top:10px;font-size: 15px; color: red !important;"
+                                                       class="form-text text-danger"
+                                                       th:errors="*{categoryName}"></small>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row" style="display: flex !important; flex-direction: row">
                                             <label class="col-12 col-form-label">Category Status:</label>
-                                            <div>
-                                                <input type="radio" th:field="*{categoryStatus}" name="categoryStatus"
-                                                       checked="checked" value="1"/>Active
-                                            </div>
-                                            <div>
-                                                <input type="radio" th:field="*{categoryStatus}" name="categoryStatus"
-                                                       value="0"/>Inactive
-                                            </div>
+                                            <input type="radio" th:field="*{categoryStatus}" name="categoryStatus"
+                                                   checked="checked" value="1"/>Active
+                                            <input type="radio" th:field="*{categoryStatus}" name="categoryStatus" value="0"/>Inactive
                                         </div>
 
                                         <div class="row">
@@ -165,41 +161,54 @@
                                                 </th>
                                             </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody th:if="${category.categoryId==0}">
                                             <tr class="odd" th:each="item : ${categoryList}">
                                                 <td th:text="${item.categoryId}"></td>
                                                 <td th:text="${item.categoryName}"></td>
-                                                <td th:text="${item.categoryStatus?'Active':'Inactive'}"></td>
+                                                <td th:text="${item.categoryStatus?'Active':'Inactive'}" th:style="${item.categoryStatus?'color:RGB(79, 208, 165)':'color:red'}"></td>
                                                 <td>
                                                     <div class="btn-group">
                                                         <a th:href="@{/admin/category/edit/{id}(id=${item.categoryId})}">
-                                                            <button type="button" class="btn btn-outline-warning">Edit
+                                                            <button type="button" class="btn btn-outline-warning" style="border-radius:  15px 0 0 15px  !important;padding: 3px 10px !important;">Edit
                                                             </button>
                                                         </a>
                                                         <a th:href="@{/admin/category/changeStatus/{categoryId}(categoryId=${item.categoryId})}">
-                                                            <button type="button" class="btn" style="border-radius: 0 15px 15px 0 !important;"
-                                                                    th:classappend="${item.categoryStatus?'btn-outline-danger':'btn-outline-success'}"
-                                                                    th:text="${item.categoryStatus ? 'Block' : 'Unblock'}">
+                                                            <button type="button" class="btn btn-outline-primary"
+                                                                    style="border-radius: 0 15px 15px 0 !important;padding: 3px 10px !important;">Change Status
                                                             </button>
                                                         </a>
                                                     </div>
-<!--                                                <td>-->
-<!--                                                    <div class="btn-group mb-1 ">-->
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                            <tbody th:unless="${category.categoryId==0}">
+                                            <tr class="odd" th:each="item : ${category}">
+                                                <td th:text="${item.categoryId}"></td>
+                                                <td th:text="${item.categoryName}"></td>
+                                                <td th:text="${item.categoryStatus?'Active':'Inactive'}" th:style="${item.categoryStatus?'color:RGB(79, 208, 165)':'color:red'}"></td>
+                                                <td>
+                                                    <div class="btn-group" th:if="${category.categoryId==0}">
+                                                        <a th:href="@{/admin/category/edit/{id}(id=${item.categoryId})}">
+                                                            <button type="button" class="btn btn-outline-warning" style="border-radius:  15px 0 0 15px  !important;padding: 3px 10px !important;">Edit
+                                                            </button>
+                                                        </a>
+                                                        <a th:href="@{/admin/category/changeStatus/{categoryId}(categoryId=${item.categoryId})}">
+                                                            <button type="button" class="btn btn-outline-primary"
+                                                                    style="border-radius: 0 15px 15px 0 !important;padding: 3px 10px !important;">Change Status
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                    <div class="btn-group" th:unless="${category.categoryId==0}">
 <!--                                                        <a th:href="@{/admin/category/edit/{id}(id=${item.categoryId})}">-->
-<!--                                                            <button type="button"-->
-<!--                                                                    class="btn btn-outline-primary mr-2">Change Role-->
+<!--                                                            <button type="button" class="btn btn-outline-warning" style="border-radius:  15px 0 0 15px  !important;padding: 3px 10px !important;">Edit-->
 <!--                                                            </button>-->
 <!--                                                        </a>-->
-<!--                                                        <a th:href="@{/admin/users/changeStatus/{id}(id=${item.categoryId})}">-->
-<!--                                                            <button type="button"-->
-<!--                                                                    class="btn"-->
-<!--                                                                    th:classappend="${item.categoryStatus?'btn-outline-danger':'btn-outline-success'}"-->
-<!--                                                                    th:text="${item.categoryStatus?'Block':'Unblock'}">Block-->
+<!--                                                        <a th:href="@{/admin/category/changeStatus/{categoryId}(categoryId=${item.categoryId})}">-->
+<!--                                                            <button type="button" class="btn btn-outline-primary"-->
+<!--                                                                    style="border-radius: 0 15px 15px 0 !important;padding: 3px 10px !important;">Change Status-->
 <!--                                                            </button>-->
 <!--                                                        </a>-->
-<!--                                                    </div>-->
-<!--                                                </td>-->
-
+                                                    </div>
                                                 </td>
                                             </tr>
                                             </tbody>
