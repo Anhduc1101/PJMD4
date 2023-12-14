@@ -195,11 +195,51 @@ create table cart
     foreign key (userId) references user (id)
 );
 
+delimiter //
+create procedure proc_show_list_cart()
+begin
+    select * from cart;
+end //
+
+delimiter //
+create procedure proc_find_cart_by_id(in cartId int)
+begin
+    select * from cart where id = cartId;
+end //
+
+delimiter //
+create procedure proc_delete_cart(in cart_id int)
+begin
+    delete from cart where id = cart_id;
+end //
+
+delimiter //
+create procedure proc_add_to_cart(in cartUserId int)
+begin
+    insert into cart(userId) values (cartUserId);
+end //
+
+delimiter //
+create procedure proc_update_cart(in cartUserId int, cartId int)
+begin
+    update cart set userId=cartUserId where id = cartId;
+end //
+
+delimiter //
+create procedure proc_find_cart_by_user_id(in user_id int)
+begin
+    select * from cart where userId = user_id;
+end //
+
+
+
 create table cart_item
 (
     id       int auto_increment primary key,
     proId    int,
     foreign key (proId) references product (id),
+    cartId   int,
+    foreign key (cartId) references cart (id),
     quantity int
 );
 
@@ -212,15 +252,15 @@ begin
 end //
 
 delimiter //
-create procedure proc_add_to_cart_item(in cItemProId int, cItemQuantity int)
+create procedure proc_add_to_cart_item(in cItemProId int, cItemCartId int, cItemQuantity int)
 begin
-    insert into cart_item(proid, quantity) values (cItemProId, cItemQuantity);
+    insert into cart_item(proId, cartId, quantity) values (cItemProId, cItemCartId, cItemQuantity);
 end //
 
 delimiter //
-create procedure proc_update_cart_item(in cItemProId int, cItemQuantity int, cItemId int)
+create procedure proc_update_cart_item(in cItemProId int, cItemCartId int, cItemQuantity int, cItemId int)
 begin
-    update cart_item set proId=cItemProId, quantity=cItemQuantity where id = cItemId;
+    update cart_item set proId=cItemProId, cartId=cItemCartId, quantity=cItemQuantity where id = cItemId;
 end //
 
 delimiter //
@@ -233,4 +273,10 @@ delimiter //
 create procedure proc_find_cart_item_by_id(in cItemId int)
 begin
     select * from cart_item where id = cItemId;
+end //
+
+delimiter //
+create procedure proc_find_cart_item_by_cart_id(in cart_id  int)
+begin
+    select * from cart_item where cartId = cart_id;
 end //

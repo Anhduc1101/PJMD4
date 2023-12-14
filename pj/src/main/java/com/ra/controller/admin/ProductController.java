@@ -32,7 +32,7 @@ public class ProductController {
     private CategoryService categoryService;
 
     @RequestMapping("/product-list")
-    public String product_add(Model model) {
+    public String product_list(Model model) {
         List<Product> products = productService.findAll();
         model.addAttribute("productList", products);
         return "admin/product/product-list";
@@ -49,7 +49,7 @@ public class ProductController {
     }
 
     @GetMapping("/add-product")
-    public String product_list(Model model) {
+    public String product_add(Model model) {
         List<Category> categoryList = categoryService.findAll();
         model.addAttribute("category", categoryList);
         Product pro = new Product();

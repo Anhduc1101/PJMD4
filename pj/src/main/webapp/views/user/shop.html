@@ -17,79 +17,8 @@
 <!-- Header End  -->
 
 <!-- ekka Cart Start -->
-<div class="ec-side-cart-overlay"></div>
-<div id="ec-side-cart" class="ec-side-cart">
-    <div class="ec-cart-inner">
-        <div class="ec-cart-top">
-            <div class="ec-cart-title">
-                <span class="cart_title">My Cart</span>
-                <button class="ec-close">×</button>
-            </div>
-            <ul class="eccart-pro-items">
-                <li>
-                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                            th:src="@{/images/product-image/6_1.jpg}" alt="product"></a>
-                    <div class="ec-pro-content">
-                        <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
-                        <span class="cart-price"><span>$76.00</span> x 1</span>
-                        <div class="qty-plus-minus">
-                            <input class="qty-input" type="text" name="ec_qtybtn" value="1"/>
-                        </div>
-                        <a href="javascript:void(0)" class="remove">×</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                            th:src="@{/images/product-image/12_1.jpg}" alt="product"></a>
-                    <div class="ec-pro-content">
-                        <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
-                        <span class="cart-price"><span>$64.00</span> x 1</span>
-                        <div class="qty-plus-minus">
-                            <input class="qty-input" type="text" name="ec_qtybtn" value="1"/>
-                        </div>
-                        <a href="javascript:void(0)" class="remove">×</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                            th:src="@{/images/product-image/3_1.jpg}" alt="product"></a>
-                    <div class="ec-pro-content">
-                        <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
-                        <span class="cart-price"><span>$59.00</span> x 1</span>
-                        <div class="qty-plus-minus">
-                            <input class="qty-input" type="text" name="ec_qtybtn" value="1"/>
-                        </div>
-                        <a href="javascript:void(0)" class="remove">×</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="ec-cart-bottom">
-            <div class="cart-sub-total">
-                <table class="table cart-table">
-                    <tbody>
-                    <tr>
-                        <td class="text-left">Sub-Total :</td>
-                        <td class="text-right">$300.00</td>
-                    </tr>
-                    <tr>
-                        <td class="text-left">VAT (20%) :</td>
-                        <td class="text-right">$60.00</td>
-                    </tr>
-                    <tr>
-                        <td class="text-left">Total :</td>
-                        <td class="text-right primary-color">$360.00</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="cart_btn">
-                <a th:href="@{/cart}" class="btn btn-primary">View Cart</a>
-                <a th:href="@{/checkout}" class="btn btn-secondary">Checkout</a>
-            </div>
-        </div>
-    </div>
-</div>
+<th:block th:insert="layouts/ekka-cart.html"></th:block>
+
 <!-- ekka Cart End -->
 
 <!-- Ec breadcrumb start -->
@@ -154,22 +83,22 @@
                                 <div class="ec-product-inner">
                                     <div class="ec-pro-image-outer">
                                         <div class="ec-pro-image">
-                                            <a href="product-left-sidebar.html" class="image" th:href="@{/cart-item}">
+                                            <a  th:href="@{/cart-item/{id}(id=${item.productId})}">
                                                 <img class="main-image" style="width: 250px;height: 220px"
                                                      th:src="@{|/uploads/${item.img}|}" alt="Product" />
                                             </a>
-<!--                                            <a th:href="@{/cart-item}" class="quickview" data-link-action="quickview"-->
-<!--                                               title="Quick view" data-bs-toggle="modal"-->
-<!--                                               data-bs-target="#ec_quickview_modal"><i class="fi-rr-eye"></i></a>-->
-<!--                                            <div class="ec-pro-actions">-->
-<!--                                                <a href="compare.html" class="ec-btn-group compare"-->
-<!--                                                   title="Compare"><i class="fi fi-rr-arrows-repeat"></i></a>-->
-<!--                                                <button title="Add To Cart" class="add-to-cart"><i-->
-<!--                                                        class="fi-rr-shopping-basket"></i> Add To Cart-->
-<!--                                                </button>-->
-<!--                                                <button class="ec-btn-group wishlist" title="Wishlist"><i-->
-<!--                                                        class="fi-rr-heart"></i></button>-->
-<!--                                            </div>-->
+                                            <a th:href="@{/cart-item}" class="quickview" data-link-action="quickview"
+                                               title="Quick view" data-bs-toggle="modal"
+                                               data-bs-target="#ec_quickview_modal"><i class="fi-rr-eye"></i></a>
+                                            <div class="ec-pro-actions">
+                                                <a th:href="@{/}" class="ec-btn-group compare"
+                                                   title="Compare"><i class="fi fi-rr-arrows-repeat"></i></a>
+                                                <button title="Add To Cart" class="add-to-cart"><i
+                                                        class="fi-rr-shopping-basket"></i> Add To Cart
+                                                </button>
+                                                <button class="ec-btn-group wishlist" title="Wishlist"><i
+                                                        class="fi-rr-heart"></i></button>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="ec-pro-content">
@@ -491,7 +420,7 @@
                         <div class="qty-product-cover">
                             <div class="qty-slide">
                                 <img class="img-responsive" style="width: 250px;height: 220px"
-                                     th:src="@{|/uploads/${item.img}|}" alt="">
+                                     th:src="@{|/uploads/${item.img}/{id}(id=${item.productId})|}" alt="">
                             </div>
                         </div>
                     </div>

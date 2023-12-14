@@ -1,6 +1,7 @@
 package com.ra.model.dao.CartItem;
 
 import com.ra.model.dao.IGenericDAO;
+import com.ra.model.entity.Cart;
 import com.ra.model.entity.CartItem;
 import com.ra.model.entity.Product;
 
@@ -11,4 +12,5 @@ void delete(Integer id);
 boolean addOrUpdateCartItem(CartItem cartItem);
 List<CartItem> getCartItem();
 CartItem findById(Integer id);
+List<CartItem> findCartItemByCartId(Cart cart);
 }

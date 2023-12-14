@@ -1,3 +1,5 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <header class="ec-header">
     <!--Ec Header Top Start -->
     <div class="header-top">
@@ -82,9 +84,10 @@
                         </a>
                         <!-- Header Cart End -->
                         <!-- Header Cart Start -->
-                        <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
+<!--                        <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">-->
+                        <a th:href="@{/user/cart}" class="ec-header-btn">
                             <div class="header-icon"><i class="fi-rr-shopping-bag"></i></div>
-                            <span class="ec-header-count cart-count-lable">3</span>
+                            <span class="ec-header-count cart-count-lable" >3</span>
                         </a>
                         <!-- Header Cart End -->
                         <!--                        <a href="javascript:void(0)" class="ec-header-btn ec-sidebar-toggle">-->
@@ -158,9 +161,9 @@
                             </a>
                             <!-- Header wishlist End -->
                             <!-- Header Cart Start -->
-                            <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
+                            <a th:href="@{/cart}" class="ec-header-btn">
                                 <div class="header-icon"><i class="fi-rr-shopping-bag"></i></div>
-                                <span class="ec-header-count cart-count-lable">3</span>
+                                <span class="ec-header-count cart-count-lable" >3</span>
                             </a>
                             <!-- Header Cart End -->
                         </div>

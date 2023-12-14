@@ -12,9 +12,31 @@ import javax.servlet.http.HttpSession;
 public class HomeController {
     @Autowired
     private HttpSession httpSession;
-@RequestMapping("/")
-    public String index(){
-    return "home";
-}
+
+    @RequestMapping("/")
+    public String index() {
+        return "home";
+    }
+
+    @RequestMapping("/about")
+    public String about() {
+        return "user/about";
+    }
+
+    @RequestMapping("/blog")
+    public String blog() {
+        return "user/blog";
+    }
+
+    @RequestMapping("/checkout")
+    public String checkout() {
+        return "user/checkout";
+    }
+
+    @RequestMapping("/wish-list")
+    public String wish_list() {
+        return "user/wish-list";
+    }
+
 
 }
