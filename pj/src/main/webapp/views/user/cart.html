@@ -80,21 +80,29 @@
                                             </td>
                                             <td data-label="Price" class="ec-cart-pro-price"><span th:text="'$'+${#numbers.formatDecimal(item.product.unitPrice, 0, 'COMMA', 2, 'POINT')}"></span>
                                             </td>
-                                            <td data-label="Quantity" class="ec-cart-pro-qty"
-                                                style="text-align: center;">
-                                                <div class="cart-qty-plus-minus">
-                                                    <input class="cart-plus-minus" type="text"
-                                                           name="cartqtybutton" th:value="${item.quantity}"/>
+                                            <td data-label="Quantity" class="ec-cart-pro-qty" style="text-align: center;">
+                                                <div style="display: flex; gap: 5px">
+                                                    <a th:href="@{/minus-quantity/{id}(id=${item.id})}" style="margin-top: 5px">-</a>
+                                                    <input style="width: 50px;height: 30px;border-radius: 10px" type="text" th:value="${item.quantity}"/>
+                                                    <a th:href="@{/plus-quantity/{id}(id=${item.id})}" style="margin-top: 5px">+</a>
                                                 </div>
                                             </td>
                                             <td data-label="Total" class="ec-cart-pro-subtotal">
                                                 <span th:text="'$'+${#numbers.formatDecimal(item.product.unitPrice * item.quantity, 0, 'COMMA', 2, 'POINT')}"></span>
                                             </td>
                                             <td data-label="Remove" class="ec-cart-pro-remove">
-                                                <a href="#"><i class="ecicon eci-trash-o"></i></a>
+                                                <a th:href="@{/cart/{id}(id=${item.id})}"><i class="ecicon eci-trash-o"></i></a>
                                             </td>
                                         </tr>
 
+                                        <tr style="height: 60px">
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th><strong>Total Amount</strong></th>
+                                            <th><span style="margin-left: 15px;color: #62de62" th:text="'$'+${#numbers.formatDecimal(subTotal,0,'COMMA',2,'POINT')}"></span></th>
+                                            <th></th>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -162,39 +170,39 @@
                             </div>
                         </div>
 
-                        <div class="ec-sb-block-content">
-                            <div class="ec-cart-summary-bottom">
-                                <div class="ec-cart-summary">
-                                    <div>
-                                        <span class="text-left">Sub-Total</span>
-                                        <span class="text-right">$80.00</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-left">Delivery Charges</span>
-                                        <span class="text-right">$80.00</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-left">Coupan Discount</span>
-                                        <span class="text-right"><a class="ec-cart-coupan">Apply Coupan</a></span>
-                                    </div>
-                                    <div class="ec-cart-coupan-content">
-                                        <form class="ec-cart-coupan-form" name="ec-cart-coupan-form" method="post"
-                                              action="#">
-                                            <input class="ec-coupan" type="text" required=""
-                                                   placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
-                                            <button class="ec-coupan-btn button btn-primary" type="submit"
-                                                    name="subscribe" value="">Apply
-                                            </button>
-                                        </form>
-                                    </div>
-                                    <div class="ec-cart-summary-total">
-                                        <span class="text-left">Total Amount</span>
-                                        <span class="text-right">$80.00</span>
-                                    </div>
-                                </div>
+<!--                        <div class="ec-sb-block-content">-->
+<!--                            <div class="ec-cart-summary-bottom">-->
+<!--                                <div class="ec-cart-summary">-->
+<!--                                    <div>-->
+<!--                                        <span class="text-left">Sub-Total</span>-->
+<!--                                        <span class="text-right">$80.00</span>-->
+<!--                                    </div>-->
+<!--                                    <div>-->
+<!--                                        <span class="text-left">Delivery Charges</span>-->
+<!--                                        <span class="text-right">$80.00</span>-->
+<!--                                    </div>-->
+<!--                                    <div>-->
+<!--                                        <span class="text-left">Coupan Discount</span>-->
+<!--                                        <span class="text-right"><a class="ec-cart-coupan">Apply Coupan</a></span>-->
+<!--                                    </div>-->
+<!--                                    <div class="ec-cart-coupan-content">-->
+<!--                                        <form class="ec-cart-coupan-form" name="ec-cart-coupan-form" method="post"-->
+<!--                                              action="#">-->
+<!--                                            <input class="ec-coupan" type="text" required=""-->
+<!--                                                   placeholder="Enter Your Coupan Code" name="ec-coupan" value="">-->
+<!--                                            <button class="ec-coupan-btn button btn-primary" type="submit"-->
+<!--                                                    name="subscribe" value="">Apply-->
+<!--                                            </button>-->
+<!--                                        </form>-->
+<!--                                    </div>-->
+<!--                                    <div class="ec-cart-summary-total">-->
+<!--                                        <span class="text-left">Total Amount</span>-->
+<!--                                        <span class="text-right" th:text="${cartItems}">$80.00</span>-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
-                            </div>
-                        </div>
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                     <!-- Sidebar Summary Block -->
                 </div>
@@ -684,6 +692,8 @@
 <!-- Feature tools end -->
 
 <th:block th:insert="layouts/script.html"></th:block>
+
+
 
 </body>
 

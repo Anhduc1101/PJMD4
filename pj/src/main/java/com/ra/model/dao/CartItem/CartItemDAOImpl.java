@@ -36,7 +36,6 @@ public class CartItemDAOImpl implements CartItemDAO {
         } finally {
             ConnectionDB.closeCon(con);
         }
-
     }
 
     @Override

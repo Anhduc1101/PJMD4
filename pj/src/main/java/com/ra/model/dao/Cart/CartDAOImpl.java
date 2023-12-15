@@ -119,4 +119,10 @@ public class CartDAOImpl implements CartDAO {
         saveOrUpdate(cart);
         return cart;
     }
+
+    @Override
+    public void changeQuantity(Integer id) {
+        Connection con = ConnectionDB.openCon();
+//        CallableStatement cs = con.prepareCall();
+    }
 }

@@ -56,4 +56,9 @@ public class CartItemServiceImpl implements CartItemService {
     public List<CartItem> findCartItemByCart(Cart cart) {
         return cartItemDAO.findCartItemByCartId(cart);
     }
+
+    @Override
+    public void changeQuantity(Integer id) {
+
+    }
 }

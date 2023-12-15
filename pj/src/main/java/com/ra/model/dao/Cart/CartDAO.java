@@ -12,4 +12,6 @@ public interface CartDAO {
     Cart findById(Integer id);
     Cart findCartByUserId(Integer id);
 Cart createCart(User user);
+
+void changeQuantity(Integer id);
 }

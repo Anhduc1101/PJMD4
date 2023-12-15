@@ -233,6 +233,8 @@ end //
 
 
 
+
+
 create table cart_item
 (
     id       int auto_increment primary key,
@@ -276,7 +278,13 @@ begin
 end //
 
 delimiter //
-create procedure proc_find_cart_item_by_cart_id(in cart_id  int)
+create procedure proc_find_cart_item_by_cart_id(in cart_id int)
 begin
     select * from cart_item where cartId = cart_id;
+end //
+
+delimiter //
+create procedure proc_change_product_quantity(in qty int)
+begin
+    update cart_item set quantity = qty;
 end //
