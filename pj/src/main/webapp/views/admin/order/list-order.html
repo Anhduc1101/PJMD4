@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<!-- Mirrored from maraviyainfotech.com/projects/ekka/ekka-v36/ekka-admin/list-order.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Dec 2023 03:42:04 GMT -->
+<th:block th:insert="admin/layouts/head.html"></th:block>
+
+<body class="ec-header-fixed ec-sidebar-fixed ec-sidebar-dark ec-header-light" id="body">
+
+<!-- WRAPPER -->
+<div class="wrapper">
+
+    <!-- LEFT MAIN SIDEBAR -->
+    <th:block th:insert="admin/layouts/sidebar.html"></th:block>
+
+
+    <!-- PAGE WRAPPER -->
+    <div class="ec-page-wrapper">
+
+        <!-- Header -->
+        <th:block th:insert="admin/layouts/header.html"></th:block>
+
+
+        <!-- CONTENT WRAPPER -->
+        <div class="ec-content-wrapper">
+            <div class="content">
+                <div class="breadcrumb-wrapper breadcrumb-wrapper-2">
+                    <h1>New Orders</h1>
+                    <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
+                        <span><i class="mdi mdi-chevron-right"></i></span>Orders
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-default">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="responsive-data-table" class="table" style="width:100%">
+                                        <thead>
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>User ID</th>
+                                            <th>User Name</th>
+                                            <th>User Email</th>
+                                            <th>Phone</th>
+                                            <th>Address</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th colspan="3">Action</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <tr th:each="item:${orders}">
+                                            <td th:text="${item.id}"></td>
+                                            <td th:text="${item.user.userId}"></td>
+                                            <td th:text="${item.user.userName}"></td>
+                                            <td th:text="${item.user.email}"></td>
+                                            <td th:text="${item.user.phone}"></td>
+                                            <td th:text="${item.address}"></td>
+                                            <td th:text="${item.create_at}"></td>
+                                            <td>
+                                                <span th:text="${item.status == 1 ? 'pending...' : (item.status == 0 ? 'denied' : 'accepted')}"
+                                                      th:class="${item.status == 1 ? 'btn btn-outline-secondary' : (item.status == 0 ? 'btn btn-outline-danger' : 'btn btn-outline-success')}">
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group mb-1">
+                                                    <a th:href="@{/admin/order/accept/{id}(id=${item.id})}">
+                                                        <button type="button" class="btn btn-outline-warning"
+                                                                style="border-radius:  15px 0 0 15px  !important;padding: 3px 10px !important;">
+                                                            Accept
+                                                        </button>
+                                                    </a>
+                                                        <a th:href="@{/admin/order/info/{id}(id=${item.id})}">
+                                                        <button type="button" class="btn btn-outline-primary"
+                                                                style="border-radius: 0;padding: 3px 10px !important;">
+                                                            Info
+                                                        </button>
+                                                    </a>
+                                                    <a th:href="@{/admin/order/deny/{id}(id=${item.id})}">
+                                                        <button type="button" class="btn btn-outline-danger"
+                                                                style="border-radius: 0 15px 15px 0 !important;padding: 3px 10px !important;">
+                                                            Deny
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End Content -->
+        </div> <!-- End Content Wrapper -->
+
+        <!-- Footer -->
+        <th:block th:insert="admin/layouts/footer.html"></th:block>
+
+
+    </div> <!-- End Page Wrapper -->
+</div> <!-- End Wrapper -->
+
+<!-- Common Javascript -->
+<th:block th:insert="admin/layouts/script.html"></th:block>
+
+</body>
+
+
+<!-- Mirrored from maraviyainfotech.com/projects/ekka/ekka-v36/ekka-admin/list-order.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Dec 2023 03:42:04 GMT -->
+</html>

@@ -1,17 +1,15 @@
 package com.ra.model.service.cartItem;
 
-import com.ra.model.dao.CartItem.CartItemDAO;
+import com.ra.model.dao.cartItem.CartItemDAO;
 import com.ra.model.entity.Cart;
 import com.ra.model.entity.CartItem;
 import com.ra.util.ConnectionDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -60,5 +58,10 @@ public class CartItemServiceImpl implements CartItemService {
     @Override
     public void changeQuantity(Integer id) {
 
+    }
+
+    @Override
+    public void clearCartItem(Integer id) {
+        cartItemDAO.clearCartItem(id);
     }
 }

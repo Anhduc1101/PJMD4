@@ -1,12 +1,13 @@
-package com.ra.model.dao.Cart;
+package com.ra.model.dao.cart;
 
 import com.ra.model.entity.Cart;
-import com.ra.model.entity.CartItem;
+
 import com.ra.model.entity.User;
 import com.ra.model.service.user.UserService;
 import com.ra.util.ConnectionDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class CartDAOImpl implements CartDAO {
+public class CartDAOImpl implements CartDAO{
     @Autowired
     private UserService userService;
 
@@ -67,10 +68,6 @@ public class CartDAOImpl implements CartDAO {
         return false;
     }
 
-    @Override
-    public void delete(Integer id) {
-
-    }
 
     @Override
     public Cart findById(Integer id) {
@@ -90,6 +87,11 @@ public class CartDAOImpl implements CartDAO {
             ConnectionDB.closeCon(con);
         }
         return cart;
+    }
+
+    @Override
+    public List<Cart> findByName(String name) {
+        return null;
     }
 
     @Override
@@ -125,4 +127,10 @@ public class CartDAOImpl implements CartDAO {
         Connection con = ConnectionDB.openCon();
 //        CallableStatement cs = con.prepareCall();
     }
+
+//    @Override
+//    public void clearCart(Cart cart) {
+//        Connection con = ConnectionDB.openCon();
+//        CallableStatement cs = con.prepareCall("call proc_clear_cart()");
+//    }
 }

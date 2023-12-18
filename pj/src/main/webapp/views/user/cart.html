@@ -49,7 +49,7 @@
 <!-- Ec cart page -->
 <section class="ec-page-content section-space-p">
     <div class="container">
-        <form action="">
+        <form method="post" action="/placeOrder"  >
             <div class="row">
                 <div class="ec-cart-leftside col-lg-8 col-md-12 ">
                     <!-- cart content Start -->
@@ -127,23 +127,23 @@
 
                                         <span class="ec-cart-wrap">
 <!--                                            <label>ID:</label><br>-->
-                                            <input type="hidden"  >
+                                            <input type="hidden" th:field="${userLogin.userId}" >
                                         </span>
                                         <span class="ec-cart-wrap">
                                             <label>User Name:</label><br>
-                                            <input type="text" readonly>
+                                            <input type="text" th:field="${userLogin.userName}" readonly>
                                         </span>
                                         <span class="ec-cart-wrap">
                                             <label>Email:</label><br>
-                                            <input type="text" readonly>
+                                            <input type="text" th:field="${userLogin.email}" readonly>
                                         </span>
                                         <span class="ec-cart-wrap">
                                             <label>Phone Number:</label><br>
-                                            <input type="text" >
+                                            <input type="text" th:field="${userLogin.phone}">
                                         </span>
                                         <span class="ec-cart-wrap">
                                             <label>Shipping Address:</label><br>
-                                            <input type="text" >
+                                            <input type="text" placeholder="Enter shipping address here ..." name="address">
                                         </span>
 
                                 </div>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 
 
 <!-- Mirrored from maraviyainfotech.com/projects/ekka/ekka-v36/ekka-admin/order-detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Dec 2023 03:42:04 GMT -->
@@ -31,12 +32,12 @@
 							<span><i class="mdi mdi-chevron-right"></i></span>Orders
 						</p>
 					</div>
-					<div class="row">
+					<div class="row" >
 						<div class="col-12">
-							<div class="ec-odr-dtl card card-default">
+							<div class="ec-odr-dtl card card-default" th:each="item:${orderDetailList}">
 								<div class="card-header card-header-border-bottom d-flex justify-content-between">
 									<h2 class="ec-odr">Order Detail<br>
-										<span class="small">Order ID: #1082</span>
+										<span class="small" th:text="${item.id}"></span>
 									</h2>
 								</div>
 								<div class="card-body">
@@ -45,10 +46,8 @@
 											<address class="info-grid">
 												<div class="info-title"><strong>Customer:</strong></div><br>
 												<div class="info-content">
-													Twitter, Inc.<br>
-													795 Folsom Ave, Suite 600<br>
-													San Francisco, CA 94107<br>
-													<abbr title="Phone">P:</abbr> (123) 456-7890
+													<span th:text="${item.order.user.userName}"></span>
+													<span th:text="${item.order.user.phone}"></span>
 												</div>
 											</address>
 										</div>
@@ -56,10 +55,7 @@
 											<address class="info-grid">
 												<div class="info-title"><strong>Shipped To:</strong></div><br>
 												<div class="info-content">
-													Elaine Hernandez<br>
-													P. Sherman 42,<br>
-													Wallaby Way, Sidney<br>
-													<abbr title="Phone">P:</abbr> (123) 345-6789
+													<span th:text="${item.order.address}"></span>
 												</div>
 											</address>
 										</div>
@@ -76,8 +72,7 @@
 											<address class="info-grid">
 												<div class="info-title"><strong>Order Date:</strong></div><br>
 												<div class="info-content">
-													4:34PM,<br>
-													Wed, Aug 13, 2020
+													<span th:text="${item.order.create_at}"></span>
 												</div>
 											</address>
 										</div>
@@ -91,22 +86,21 @@
 														<tr class="line">
 															<td><strong>#</strong></td>
 															<td class="text-center"><strong>IMAGE</strong></td>
-															<td class="text-center"><strong>PRODUCT</strong></td>
-															<td class="text-center"><strong>PRICE/UNIT</strong></td>
+															<td class="text-center"><strong>PRODUCT NAME</strong></td>
+															<td class="text-center"><strong>UNIT PRICE</strong></td>
 															<td class="text-right"><strong>QUANTITY</strong></td>
 															<td class="text-right"><strong>SUBTOTAL</strong></td>
 														</tr>
 													</thead>
 													<tbody>
 														<tr>
-															<td>1</td>
+															<td th:text="${item.product.productId}"></td>
 															<td><img class="product-img"
 																	src="assets/img/products/p1.jpg" alt="" /></td>
-															<td><strong>Baby Pink Shoes</strong><br>a vary smooth and
-																comfert Shoes ever for baby.</td>
-															<td class="text-center">15</td>
-															<td class="text-center">$75</td>
-															<td class="text-right">$1,125.00</td>
+															<td th:text="${item.product.productName}"></td>
+															<td class="text-center" th:text="${item.quantity}">15</td>
+															<td class="text-center" th:text="${item.product.unitPrice}"></td>
+															<td class="text-right" th:text="'$'+${item.quantity*item.product.unitPrice}"></td>
 														</tr>
 														<tr>
 															<td>2</td>
@@ -137,7 +131,7 @@
 															<td colspan="4">
 															</td>
 															<td class="text-right"><strong>Total</strong></td>
-															<td class="text-right"><strong>$2,400.00</strong></td>
+															<td class="text-right" th:text="'$'+${#numbers.formatDecimal(subTotal,0,'COMMA',2,'POINT')}"><strong>$2,400.00</strong></td>
 														</tr>
 
 														<tr>
@@ -154,56 +148,56 @@
 								</div>
 							</div>
 							<!-- Tracking Detail -->
-							<div class="card mt-4 trk-order">
-								<div class="p-4 text-center text-white text-lg bg-dark rounded-top">
-									<span class="text-uppercase">Tracking Order No - </span>
-									<span class="text-medium">34VB5540K83</span>
-								</div>
-								<div
-									class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">
-									<div class="w-100 text-center py-1 px-2"><span class="text-medium">Shipped
-											Via:</span> UPS Ground</div>
-									<div class="w-100 text-center py-1 px-2"><span class="text-medium">Status:</span>
-										Checking Quality</div>
-									<div class="w-100 text-center py-1 px-2"><span class="text-medium">Expected
-											Date:</span> DEC 09, 2021</div>
-								</div>
-								<div class="card-body">
-									<div
-										class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
-										<div class="step completed">
-											<div class="step-icon-wrap">
-												<div class="step-icon"><i class="mdi mdi-cart"></i></div>
-											</div>
-											<h4 class="step-title">Confirmed Order</h4>
-										</div>
-										<div class="step completed">
-											<div class="step-icon-wrap">
-												<div class="step-icon"><i class="mdi mdi-tumblr-reblog"></i></div>
-											</div>
-											<h4 class="step-title">Processing Order</h4>
-										</div>
-										<div class="step completed">
-											<div class="step-icon-wrap">
-												<div class="step-icon"><i class="mdi mdi-gift"></i></div>
-											</div>
-											<h4 class="step-title">Product Dispatched</h4>
-										</div>
-										<div class="step">
-											<div class="step-icon-wrap">
-												<div class="step-icon"><i class="mdi mdi-truck-delivery"></i></div>
-											</div>
-											<h4 class="step-title">On Delivery</h4>
-										</div>
-										<div class="step">
-											<div class="step-icon-wrap">
-												<div class="step-icon"><i class="mdi mdi-hail"></i></div>
-											</div>
-											<h4 class="step-title">Product Delivered</h4>
-										</div>
-									</div>
-								</div>
-							</div>
+<!--							<div class="card mt-4 trk-order">-->
+<!--								<div class="p-4 text-center text-white text-lg bg-dark rounded-top">-->
+<!--									<span class="text-uppercase">Tracking Order No - </span>-->
+<!--									<span class="text-medium">34VB5540K83</span>-->
+<!--								</div>-->
+<!--								<div-->
+<!--									class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">-->
+<!--									<div class="w-100 text-center py-1 px-2"><span class="text-medium">Shipped-->
+<!--											Via:</span> UPS Ground</div>-->
+<!--									<div class="w-100 text-center py-1 px-2"><span class="text-medium">Status:</span>-->
+<!--										Checking Quality</div>-->
+<!--									<div class="w-100 text-center py-1 px-2"><span class="text-medium">Expected-->
+<!--											Date:</span> DEC 09, 2021</div>-->
+<!--								</div>-->
+<!--								<div class="card-body">-->
+<!--									<div-->
+<!--										class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">-->
+<!--										<div class="step completed">-->
+<!--											<div class="step-icon-wrap">-->
+<!--												<div class="step-icon"><i class="mdi mdi-cart"></i></div>-->
+<!--											</div>-->
+<!--											<h4 class="step-title">Confirmed Order</h4>-->
+<!--										</div>-->
+<!--										<div class="step completed">-->
+<!--											<div class="step-icon-wrap">-->
+<!--												<div class="step-icon"><i class="mdi mdi-tumblr-reblog"></i></div>-->
+<!--											</div>-->
+<!--											<h4 class="step-title">Processing Order</h4>-->
+<!--										</div>-->
+<!--										<div class="step completed">-->
+<!--											<div class="step-icon-wrap">-->
+<!--												<div class="step-icon"><i class="mdi mdi-gift"></i></div>-->
+<!--											</div>-->
+<!--											<h4 class="step-title">Product Dispatched</h4>-->
+<!--										</div>-->
+<!--										<div class="step">-->
+<!--											<div class="step-icon-wrap">-->
+<!--												<div class="step-icon"><i class="mdi mdi-truck-delivery"></i></div>-->
+<!--											</div>-->
+<!--											<h4 class="step-title">On Delivery</h4>-->
+<!--										</div>-->
+<!--										<div class="step">-->
+<!--											<div class="step-icon-wrap">-->
+<!--												<div class="step-icon"><i class="mdi mdi-hail"></i></div>-->
+<!--											</div>-->
+<!--											<h4 class="step-title">Product Delivered</h4>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 						</div>
 					</div>
 				</div> <!-- End Content -->

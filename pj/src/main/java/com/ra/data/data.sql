@@ -231,9 +231,11 @@ begin
     select * from cart where userId = user_id;
 end //
 
-
-
-
+delimiter //
+create procedure proc_clear_cart(in cartId int)
+begin
+    delete from cart where id = cartId;
+end //
 
 create table cart_item
 (
@@ -278,6 +280,12 @@ begin
 end //
 
 delimiter //
+create procedure proc_clear_cart_item(in cItemId int)
+begin
+    delete from cart_item where cartId = cItemId;
+end //
+
+delimiter //
 create procedure proc_find_cart_item_by_cart_id(in cart_id int)
 begin
     select * from cart_item where cartId = cart_id;
@@ -287,4 +295,102 @@ delimiter //
 create procedure proc_change_product_quantity(in qty int)
 begin
     update cart_item set quantity = qty;
+end //
+
+create table orders
+(
+    id        int auto_increment primary key,
+    user_id   int,
+    foreign key (user_id) references user (id),
+    status    int      default 1,
+    address   varchar(255),
+    create_at datetime default (current_timestamp)
+);
+drop table orders;
+delimiter //
+create procedure proc_show_list_order()
+begin
+    select * from orders;
+end //
+
+delimiter //
+create procedure proc_add_new_order(in oUserId int, oStatus int, oAddress varchar(255), oCreateAt date)
+begin
+    insert into orders(user_id, status, address, create_at) values (oUserId, oStatus, oAddress, oCreateAt);
+end //
+
+delimiter //
+create procedure proc_update_order(in oUserId int, oStatus int, oAddress varchar(255), oCreateAt date, oId int)
+begin
+    update orders set user_id=oUserId, status=oStatus, address=oAddress, create_at=oCreateAt where id = oId;
+end //
+
+delimiter //
+create procedure proc_change_orders_status(in oStatus int, oId int)
+begin
+    update orders set status=oStatus where id = oId;
+end //
+
+delimiter //
+create procedure proc_find_orders_by_orders_id(in oId int)
+begin
+    select * from orders where id = oId;
+end //
+
+delimiter //
+create procedure proc_create_orders(in oUserId int, oStatus int, oAddress varchar(255), out oId int)
+begin
+    insert into orders(user_id, status, address) values (oUserId, oStatus, oAddress);
+    set oId = LAST_INSERT_ID();
+end //
+
+
+
+DELIMITER //
+
+CREATE PROCEDURE proc_accept_or_deny_order(
+    IN oId INT,
+    IN _status int
+)
+BEGIN
+
+        UPDATE orders SET status = _status WHERE id = oId;
+
+END //
+
+DELIMITER ;
+
+create table order_detail
+(
+    id         int auto_increment primary key,
+    order_id   int,
+    foreign key (order_id) references orders (id),
+    product_id int,
+    foreign key (product_id) references product (id),
+    quantity int
+);
+drop table order_detail;
+delimiter //
+create procedure proc_add_new_order_detail(in odOrderId int, odProId int,qty int)
+begin
+    insert into order_detail(order_id, product_id,quantity) values (odOrderId, odProId,qty);
+end //
+
+delimiter //
+create procedure proc_update_order_detail(in odOrderId int, odProId int,qty int, odId int)
+begin
+    update order_detail set order_id=odOrderId, product_id=odProId,quantity=qty where id = odId;
+end //
+
+
+delimiter //
+create procedure proc_find_order_detail_by_order_detail_id(in odId int)
+begin
+    select * from orders where id = odId;
+end //
+
+delimiter //
+create procedure proc_show_list_order_detail()
+begin
+    select * from order_detail ;
 end //

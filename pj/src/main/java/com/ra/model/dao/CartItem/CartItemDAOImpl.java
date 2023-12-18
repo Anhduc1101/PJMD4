@@ -1,12 +1,10 @@
-package com.ra.model.dao.CartItem;
+package com.ra.model.dao.cartItem;
 
 import com.ra.model.entity.Cart;
 import com.ra.model.entity.CartItem;
-import com.ra.model.entity.Product;
 import com.ra.model.service.cart.CartService;
 import com.ra.model.service.product.ProductService;
 import com.ra.util.ConnectionDB;
-import jdk.vm.ci.code.site.Call;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -137,5 +135,19 @@ public class CartItemDAOImpl implements CartItemDAO {
             ConnectionDB.closeCon(con);
         }
         return cartItemList;
+    }
+
+    @Override
+    public void clearCartItem(Integer id) {
+        Connection connection=ConnectionDB.openCon();
+        try {
+            CallableStatement callableStatement= connection.prepareCall("call proc_clear_cart_item(?)");
+            callableStatement.setInt(1,id);
+            callableStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            ConnectionDB.closeCon(connection);
+        }
     }
 }

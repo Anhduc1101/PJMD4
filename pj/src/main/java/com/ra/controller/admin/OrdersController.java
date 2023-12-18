@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("admin")
-public class OrderController {
+public class OrdersController {
     @RequestMapping("/new-order")
     public String new_order(){
-        return "admin/order/new-order";
+        return "admin/order/list-order";
     }
     @RequestMapping("/order-detail")
     public String order_detail(){
