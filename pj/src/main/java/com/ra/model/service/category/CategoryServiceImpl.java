@@ -38,7 +38,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void sortCategory() {
-        categoryDAO.sortCategory();
+    public List<Category> sortCategory() {
+        return categoryDAO.sortCategory();
+    }
+
+    @Override
+    public List<Category> paginator(Integer noPage) {
+        return categoryDAO.paginator(noPage);
+    }
+
+    @Override
+    public Integer getTotalPage() {
+        return categoryDAO.getTotalPage();
     }
 }

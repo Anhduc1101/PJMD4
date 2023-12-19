@@ -6,7 +6,7 @@ public class Category {
     private int categoryId;
     @NotEmpty(message = "Can not be blank")
     private String categoryName;
-    private boolean categoryStatus;
+    private boolean categoryStatus =true;
 
     public Category() {
     }

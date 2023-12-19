@@ -91,22 +91,24 @@ public class ProductController {
 
     @PostMapping("/product/edit-product")
     public String update_product(@Valid @ModelAttribute("product") Product product, BindingResult result, Model model, @RequestParam("images") MultipartFile file) {
+        try {
         if (result.hasErrors()) {
             List<Category> categoryList = categoryService.findAll();
             model.addAttribute("category", categoryList);
             return "admin/product/edit-product";
-        } else {
-            String fileName = file.getOriginalFilename();
-            File destination = new File(path + fileName);
-            try {
-                Files.write(destination.toPath(), file.getBytes(), StandardOpenOption.CREATE);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            product.setImg(fileName);
-            productService.saveOrUpdate(product);
-            return "redirect:/admin/product-list";
         }
+                if (!file.isEmpty()){
+                    String fileName = file.getOriginalFilename();
+                    File destination = new File(path + fileName);
+                    Files.write(destination.toPath(), file.getBytes(), StandardOpenOption.CREATE);
+                    product.setImg(fileName);
+                }
+                productService.saveOrUpdate(product);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return "redirect:/admin/product-list";
     }
 
     @GetMapping("/product/delete-product/{id}")

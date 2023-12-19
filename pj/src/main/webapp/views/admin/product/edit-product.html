@@ -45,7 +45,7 @@
                                 <div class="row ec-vendor-uploads">
                                     <div class="col-lg-8">
                                         <div class="ec-vendor-upload-detail">
-                                            <form class="row g-3" action="/admin/add-product" method="post" enctype="multipart/form-data"
+                                            <form class="row g-3" action="/admin/product/edit-product" method="post" enctype="multipart/form-data"
                                                   th:object="${pro}">
                                                 <div class="col-md-6" style="margin-bottom: 20px !important;">
                                                     <label class="form-label">Pro.ID:</label>
@@ -89,12 +89,14 @@
                                                                     <input type="file" id="imageUploads" name="images"
                                                                            class="ec-image-upload"
                                                                            accept=".png, .jpg, .jpeg" >
+
                                                                     <label><img
                                                                             th:src="@{/img/icons/edit.svg}"
                                                                             class="svg_img header_svg"
                                                                             alt="edit"
                                                                             style="top:0;right: 0"
                                                                     ></label>
+                                                                    <input type="hidden" th:field="*{img}"/>
                                                                 </div>
                                                                 <div class="avatar-preview ec-preview">
                                                                     <div class="imagePreview ec-div-preview">

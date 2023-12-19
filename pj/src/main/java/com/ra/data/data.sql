@@ -35,7 +35,7 @@ end //
 delimiter //
 create procedure proc_find_category_by_name(in cName varchar(255))
 begin
-    select * from category where name = cName;
+    select * from category where LCASE(name) like concat('%',cName,'%') ;
 end //
 
 delimiter //
@@ -50,6 +50,15 @@ begin
     select * from category order by name;
 end //
 
+
+delimiter //
+create procedure proc_pagination_category(in oLimit int, noPage int, out totalPage int)
+begin
+    declare oOffset int;
+    set oOffset = (noPage - 1) * oLimit;
+    set totalPage = ceil((select count(*) from category) / oLimit);
+    select * from category limit oLimit offset oOffset;
+end //
 
 create table user
 (
@@ -113,6 +122,15 @@ delimiter //
 create procedure proc_find_user_by_email(in uEmail varchar(255))
 begin
     select * from user where email = uEmail;
+end //
+
+delimiter //
+create procedure proc_pagination_user(in oLimit int, noPage int, out totalPage int)
+begin
+    declare oOffset int;
+    set oOffset = (noPage - 1) * oLimit;
+    set totalPage = ceil((select count(*) from user) / oLimit);
+    select * from user limit oLimit offset oOffset;
 end //
 
 create table product
@@ -188,6 +206,15 @@ begin
     delete from product where id = pId;
 end //
 
+delimiter //
+create procedure proc_pagination_product(in oLimit int, noPage int, out totalPage int)
+begin
+    declare oOffset int;
+    set oOffset = (noPage - 1) * oLimit;
+    set totalPage = ceil((select count(*) from product) / oLimit);
+    select * from product limit oLimit offset oOffset;
+end //
+
 create table cart
 (
     id     int primary key auto_increment,
@@ -235,6 +262,15 @@ delimiter //
 create procedure proc_clear_cart(in cartId int)
 begin
     delete from cart where id = cartId;
+end //
+
+delimiter //
+create procedure proc_pagination_cart(in oLimit int, noPage int, out totalPage int)
+begin
+    declare oOffset int;
+    set oOffset = (noPage - 1) * oLimit;
+    set totalPage = ceil((select count(*) from cart) / oLimit);
+    select * from cart limit oLimit offset oOffset;
 end //
 
 create table cart_item
@@ -297,6 +333,15 @@ begin
     update cart_item set quantity = qty;
 end //
 
+delimiter //
+create procedure proc_pagination_cart_item(in oLimit int, noPage int, out totalPage int)
+begin
+    declare oOffset int;
+    set oOffset = (noPage - 1) * oLimit;
+    set totalPage = ceil((select count(*) from cart_item) / oLimit);
+    select * from cart_item limit oLimit offset oOffset;
+end //
+
 create table orders
 (
     id        int auto_increment primary key,
@@ -345,7 +390,6 @@ begin
 end //
 
 
-
 DELIMITER //
 
 CREATE PROCEDURE proc_accept_or_deny_order(
@@ -353,12 +397,18 @@ CREATE PROCEDURE proc_accept_or_deny_order(
     IN _status int
 )
 BEGIN
-
-        UPDATE orders SET status = _status WHERE id = oId;
-
+    UPDATE orders SET status = _status WHERE id = oId;
 END //
-
 DELIMITER ;
+
+delimiter //
+create procedure proc_pagination_orders(in oLimit int, noPage int, out totalPage int)
+begin
+    declare oOffset int;
+    set oOffset = (noPage - 1) * oLimit;
+    set totalPage = ceil((select count(*) from orders) / oLimit);
+    select * from orders limit oLimit offset oOffset;
+end //
 
 create table order_detail
 (
@@ -367,30 +417,45 @@ create table order_detail
     foreign key (order_id) references orders (id),
     product_id int,
     foreign key (product_id) references product (id),
-    quantity int
+    quantity   int
 );
 drop table order_detail;
 delimiter //
-create procedure proc_add_new_order_detail(in odOrderId int, odProId int,qty int)
+create procedure proc_add_new_order_detail(in odOrderId int, odProId int, qty int)
 begin
-    insert into order_detail(order_id, product_id,quantity) values (odOrderId, odProId,qty);
+    insert into order_detail(order_id, product_id, quantity) values (odOrderId, odProId, qty);
 end //
 
 delimiter //
-create procedure proc_update_order_detail(in odOrderId int, odProId int,qty int, odId int)
+create procedure proc_update_order_detail(in odOrderId int, odProId int, qty int, odId int)
 begin
-    update order_detail set order_id=odOrderId, product_id=odProId,quantity=qty where id = odId;
+    update order_detail set order_id=odOrderId, product_id=odProId, quantity=qty where id = odId;
 end //
 
 
 delimiter //
 create procedure proc_find_order_detail_by_order_detail_id(in odId int)
 begin
-    select * from orders where id = odId;
+    select * from order_detail where id = odId;
 end //
 
 delimiter //
 create procedure proc_show_list_order_detail()
 begin
     select * from order_detail ;
+end //
+
+delimiter //
+create procedure proc_pagination_order_detail(in oLimit int, noPage int, out totalPage int)
+begin
+    declare oOffset int;
+    set oOffset = (noPage - 1) * oLimit;
+    set totalPage = ceil((select count(*) from order_detail) / oLimit);
+    select * from order_detail limit oLimit offset oOffset;
+end //
+
+delimiter //
+create procedure proc_find_list_order_detail_by_order_id(in oId int)
+begin
+    select * from order_detail where order_id=oId;
 end //

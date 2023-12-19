@@ -33,4 +33,8 @@ public class OrderDetailServiceImpl implements OrderDetailService{
         return null;
     }
 
+    @Override
+    public List<OrderDetail> findListOrderDetailByOrderId(Integer id) {
+        return orderDetailDAO.findListOrderDetailByOrderId(id);
+    }
 }

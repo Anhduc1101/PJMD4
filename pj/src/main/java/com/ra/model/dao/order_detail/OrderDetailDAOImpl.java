@@ -100,4 +100,28 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
     public List<OrderDetail> findByName(String name) {
         return null;
     }
+
+    @Override
+    public List<OrderDetail> findListOrderDetailByOrderId(Integer id) {
+        Connection con = ConnectionDB.openCon();
+        List<OrderDetail> orderDetails=new ArrayList<>();
+        try {
+            CallableStatement cs = con.prepareCall("call proc_find_list_order_detail_by_order_id(?)");
+            cs.setInt(1,id);
+            ResultSet rs=cs.executeQuery();
+            while (rs.next()){
+                OrderDetail orderDetail=new OrderDetail();
+                orderDetail.setId(rs.getInt("id"));
+                orderDetail.setOrder(orderService.findById(rs.getInt("order_id")));
+                orderDetail.setProduct(productService.findById(rs.getInt("product_id")));
+                orderDetail.setQuantity(rs.getInt("quantity"));
+                orderDetails.add(orderDetail);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            ConnectionDB.closeCon(con);
+        }
+        return orderDetails;
+    }
 }

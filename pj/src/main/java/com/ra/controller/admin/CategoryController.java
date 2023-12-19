@@ -21,14 +21,30 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping("/sub-category")
+    @GetMapping("/sub-category")
     public String subCategory(Model model) {
         List<Category> categories = categoryService.findAll();
+        model.addAttribute("categoryList", categories);
         Category cat = new Category();
         model.addAttribute("category", cat);
-        model.addAttribute("categoryList", categories);
         return "admin/category/sub-category";
     }
+
+//    @GetMapping("/sub-category/{id}")
+//    public String subCategory(@PathVariable("id") Integer id, Model model) {
+//        List<Category> categoryList = categoryService.paginator(id);
+//// Lấy danh sách các đối tượng Category theo trang từ categoryService và gán cho categoryList
+//        model.addAttribute("totalPage", categoryService.getTotalPage());
+//// Lấy tổng số trang từ categoryService và thêm vào model với thuộc tính "totalPage"
+//        model.addAttribute("categoryList", categoryList);
+//// Thêm danh sách categoryList vào model với thuộc tính "categoryList"
+//        Category cat = new Category();
+//// Tạo một đối tượng Category mới
+//        model.addAttribute("category", cat);
+//// Thêm đối tượng cat vào model với thuộc tính "category"
+//        return "admin/category/sub-category";
+//// Trả về tên của template "admin/category/sub-category"
+//    }
 
 
     @PostMapping("/add-category")
@@ -50,7 +66,7 @@ public class CategoryController {
 
     @GetMapping("/category/edit/{id}")
     public String edit(@PathVariable("id") Integer id, Model model) {
-        List<Category> categories=categoryService.findAll();
+        List<Category> categories = categoryService.findAll();
         model.addAttribute("categoryList", categories);
         Category cat = categoryService.findById(id);
         model.addAttribute("category", cat);
@@ -67,4 +83,22 @@ public class CategoryController {
             return "redirect:/admin/sub-category";
         }
     }
+    @GetMapping("/search")
+    public String search(@RequestParam(value = "search", required = false) String search, Model model) {
+        List<Category> searchResult = categoryService.findByName(search);
+        model.addAttribute("categoryList", searchResult);
+        List<Category> categories = categoryService.findAll();
+        model.addAttribute("totalPage", (int) Math.ceil(categories.size() / 4.0));
+        return "admin/category/sub-category";
+    }
+
+    @GetMapping("/sort")
+    public String sortCategory(Model model) {
+        List<Category> sortResult =categoryService.sortCategory();
+        model.addAttribute("categoryList",sortResult);
+        List<Category> categories = categoryService.findAll();
+        model.addAttribute("totalPage", (int) Math.ceil(categories.size() / 4.0));
+        return "admin/category/sub-category";
+    }
+
 }

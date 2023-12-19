@@ -5,14 +5,14 @@ import com.ra.util.ConnectionDB;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 @Component
 public class CategoryDAOImpl implements CategoryDAO {
+    private int LIMIT = 5;
+    private int totalPage = 0;
 
     @Override
     public List<Category> findAll() {
@@ -98,6 +98,7 @@ public class CategoryDAOImpl implements CategoryDAO {
                 cat.setCategoryId(rs.getInt("id"));
                 cat.setCategoryName(rs.getString("name"));
                 cat.setCategoryStatus(rs.getBoolean("status"));
+                categories.add(cat);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -122,15 +123,56 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
 
     @Override
-    public void sortCategory() {
+    public List<Category> sortCategory() {
         Connection con = ConnectionDB.openCon();
+        List<Category> categories = new ArrayList<>();
         try {
             CallableStatement cs = con.prepareCall("call proc_sort_category()");
-            cs.executeQuery();
+            ResultSet rs = cs.executeQuery();
+            while (rs.next()) {
+                Category cat = new Category();
+                cat.setCategoryId(rs.getInt("id"));
+                cat.setCategoryName(rs.getString("name"));
+                cat.setCategoryStatus(rs.getBoolean("status"));
+                categories.add(cat);
+            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             ConnectionDB.closeCon(con);
         }
+        return categories;
+    }
+
+    @Override
+    public List<Category> paginator(Integer noPage) {
+        Connection con = ConnectionDB.openCon();
+        List<Category> categories = new ArrayList<>();
+        try {
+            CallableStatement cs = con.prepareCall("call proc_pagination_category(?,?,?)");
+            cs.setInt(1, LIMIT);
+            cs.setInt(2, noPage);
+            cs.setInt(3, Types.INTEGER);
+            ResultSet rs = cs.executeQuery();
+            while (rs.next()) {
+                Category cat = new Category();
+                cat.setCategoryId(rs.getInt("id"));
+                cat.setCategoryName(rs.getString("name"));
+                cat.setCategoryStatus(rs.getBoolean("status"));
+                categories.add(cat);
+            }
+            this.totalPage = cs.getInt(3);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDB.closeCon(con);
+        }
+        return categories;
+    }
+
+    @Override
+    public Integer getTotalPage() {
+        return totalPage;
     }
 }

@@ -5,11 +5,11 @@
         <!-- search form -->
         <div class="search-form d-lg-inline-block">
             <div class="input-group">
-                <input type="text" name="query" id="search-input" class="form-control"
-                       placeholder="search.." autofocus autocomplete="off" />
-                <button type="button" name="search" id="search-btn" class="btn btn-flat">
-                    <i class="mdi mdi-magnify"></i>
-                </button>
+<!--                <input type="text" name="query" id="search-input" class="form-control"-->
+<!--                       placeholder="search.." autofocus autocomplete="off" />-->
+<!--                <button type="button" name="search" id="search-btn" class="btn btn-flat">-->
+<!--                    <i class="mdi mdi-magnify"></i>-->
+<!--                </button>-->
             </div>
             <div id="search-results-container">
                 <ul id="search-results"></ul>
@@ -25,12 +25,12 @@
                             aria-expanded="false">
                         <img th:src="@{/../img/user/user.png}" class="user-image" alt="User Image" />
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-right ec-dropdown-menu">
+                    <ul class="dropdown-menu dropdown-menu-right ec-dropdown-menu" th:if="${session.userLogin}">
                         <!-- User image -->
-                        <li class="dropdown-header">
+                        <li class="dropdown-header" >
                             <img th:src="@{/../img/user/user.png}" class="img-circle" alt="User Image" />
-                            <div class="d-inline-block">
-                                John Deo <small class="pt-1">john.example@gmail.com</small>
+                            <div class="d-inline-block" th:text="${session.userLogin.userName}">
+                                John Deo <small class="pt-1" th:text="${session.userLogin.email}">john.example@gmail.com</small>
                             </div>
                         </li>
                         <li>
@@ -44,7 +44,7 @@
 <!--                            </a>-->
 <!--                        </li>-->
                         <li>
-                            <a th:href="@{#}">
+                            <a th:href="@{/login}">
                                 <i class="mdi mdi-logout"></i> Log In
                             </a>
                         </li>

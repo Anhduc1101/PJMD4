@@ -59,14 +59,14 @@
                                             <td th:text="${item.user.phone}"></td>
                                             <td th:text="${item.address}"></td>
                                             <td th:text="${item.create_at}"></td>
-                                            <td>
+                                            <td style="height: 30px;padding-top: 5px !important;">
                                                 <span th:text="${item.status == 1 ? 'pending...' : (item.status == 0 ? 'denied' : 'accepted')}"
-                                                      th:class="${item.status == 1 ? 'btn btn-outline-secondary' : (item.status == 0 ? 'btn btn-outline-danger' : 'btn btn-outline-success')}">
+                                                      th:class="${item.status == 1 ? 'btn btn-outline-secondary' : (item.status == 0 ? 'btn btn-outline-danger' : 'btn btn-outline-success')}" >
                                                 </span>
                                             </td>
                                             <td>
                                                 <div class="btn-group mb-1">
-                                                    <a th:href="@{/admin/order/accept/{id}(id=${item.id})}">
+                                                    <a th:if="${item.status == 1}" th:href="@{/admin/order/accept/{id}(id=${item.id})}">
                                                         <button type="button" class="btn btn-outline-warning"
                                                                 style="border-radius:  15px 0 0 15px  !important;padding: 3px 10px !important;">
                                                             Accept
@@ -78,7 +78,7 @@
                                                             Info
                                                         </button>
                                                     </a>
-                                                    <a th:href="@{/admin/order/deny/{id}(id=${item.id})}">
+                                                    <a th:if="${item.status == 1}" th:href="@{/admin/order/deny/{id}(id=${item.id})}">
                                                         <button type="button" class="btn btn-outline-danger"
                                                                 style="border-radius: 0 15px 15px 0 !important;padding: 3px 10px !important;">
                                                             Deny

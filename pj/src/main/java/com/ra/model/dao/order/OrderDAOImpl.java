@@ -27,7 +27,7 @@ public class OrderDAOImpl implements OrderDAO {
             while (rs.next()) {
                 Order order = new Order();
                 order.setId(rs.getInt("id"));
-                order.setUser(userService.findById(rs.getInt("id")));
+                order.setUser(userService.findById(rs.getInt("user_id")));
                 order.setStatus(rs.getInt("status"));
                 order.setAddress(rs.getString("address"));
                 order.setCreate_at(rs.getDate("create_at"));
@@ -132,10 +132,11 @@ public class OrderDAOImpl implements OrderDAO {
             cs.registerOutParameter(4, Types.INTEGER);
             int checkStatement = cs.executeUpdate();
             orderId = cs.getInt(4);
-            CallableStatement callableStatement = con.prepareCall("call proc_add_new_order_detail(?,?)");
+            CallableStatement callableStatement = con.prepareCall("call proc_add_new_order_detail(?,?,?)");
             for (CartItem cartItem : cartItemList) {
                 callableStatement.setInt(1, orderId);
                 callableStatement.setInt(2, cartItem.getProduct().getProductId());
+                callableStatement.setInt(3,cartItem.getQuantity());
                 callableStatement.addBatch();
             }
             int[] batchResult = callableStatement.executeBatch();

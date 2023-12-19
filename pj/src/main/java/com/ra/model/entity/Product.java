@@ -15,7 +15,7 @@ public class Product {
     private double unitPrice;
 //    @Min(value = 0,message = "Stock must be greater than 0")
     private int stock;
-    private boolean status;
+    private boolean status =true;
 
     public Product() {
     }

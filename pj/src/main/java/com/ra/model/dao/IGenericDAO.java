@@ -7,4 +7,5 @@ public interface IGenericDAO<T,ID>{
     boolean saveOrUpdate(T t);
     T findById(ID id);
     List<T> findByName(String name);
+
 }

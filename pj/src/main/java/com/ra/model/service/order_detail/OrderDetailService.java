@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface OrderDetailService extends IGenericService<OrderDetail,Integer> {
 
+    List<OrderDetail> findListOrderDetailByOrderId(Integer id);
+
 }
