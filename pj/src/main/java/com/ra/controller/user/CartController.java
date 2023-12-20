@@ -34,6 +34,7 @@ public class CartController {
         User user = (User) httpSession.getAttribute("userLogin");
         if (user != null) {
             Cart cart = cartService.findCartByUserId(user.getUserId());
+
             List<CartItem> cartItems = cartItemService.findCartItemByCart(cart);
             model.addAttribute("cartItems", cartItems);
             httpSession.setAttribute("cartItems",cartItems);
@@ -75,7 +76,7 @@ public class CartController {
     }
 
     @PostMapping("/placeOrder")
-    public String place_order(@RequestParam("address") String address) {
+    public String place_order(@RequestParam("address") String address,@RequestParam("phone") String phone) {
 //        lấy dc thằng user đang đăng nhập
         User user = (User) httpSession.getAttribute("userLogin");
 //        lay dc cai cart của úser dang dang nhap,
@@ -85,6 +86,10 @@ public class CartController {
         Order order = new Order();
         order.setUser(user);
         order.setStatus(1);
+        if (user.getPhone()!=null){
+            user.setPhone(phone);
+            order.setUser(user);
+        }
         order.setAddress(address);
 //        day sang orderdetail
         orderService.createOrder(order, cartItemList);

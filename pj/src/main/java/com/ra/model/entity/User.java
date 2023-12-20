@@ -12,6 +12,7 @@ public class User {
     private String email;
     @NotEmpty(message = "Can not be blank")
     private String password;
+//    @NotEmpty(message = "Can not be blank and must input 10 numbers")
     private String phone;
     private boolean role;
     private boolean status;

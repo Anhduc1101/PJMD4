@@ -29,6 +29,9 @@
                             <span><i class="mdi mdi-chevron-right"></i></span>User
                         </p>
                     </div>
+                    <div th:if="${mess != null}" th:style="${'color:red'}" class="alert mb--15" role="alert">
+                        <strong><span th:text="${mess}"></span></strong>
+                    </div>
 <!--                    <div>-->
 <!--                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"-->
 <!--                                data-bs-target="#addUser"> Edit User-->
@@ -63,7 +66,7 @@
                                             <td th:text="${item.role?'USER':'ADMIN'}" th:style="${item.role?'color:RGB(79, 208, 165)':'color:red'}"></td>
                                             <td th:text="${item.status?'Active':'Inactive'}" th:style="${item.status?'color:RGB(79, 208, 165)':'color:red'}"></td>
                                             <td>
-                                                <div class="btn-group " >
+                                                <div class="btn-group " th:if="${item.email!='admin@gmail.com'}">
                                                     <a th:href="@{/admin/users/changeRole/{id}(id=${item.userId})}">
                                                         <button type="button"
                                                                 class="btn btn-outline-primary" style="border-radius: 15px 0 0 15px  !important;padding: 3px 10px !important;">Change Role

@@ -53,13 +53,16 @@ public class CartItemController {
 //        neu user da dang nhap roi, kiem tra user co ton tai gio hang hay khong?
         Cart cart = cartService.findCartByUserId(user.getUserId());
 //        neu khong co thi tao gio hang moi
-        if (cart == null) {
-            Cart cart1 = new Cart();
-            cart1.setUser(user);
-            cartList.add(cart1);
+
+        if (cart.getUser() == null) {
+            cart = new Cart();
+            cart.setUser(user);
+            cartList.add(cart);
+            cartService.saveOrUpdate(cart);
         }
+        Cart newCart = cartService.findCartByUserId(user.getUserId());
 //        lay danh sach nhung san pham trong gio hang cua user dang dang nhap
-        List<CartItem> cartItemList = cartItemService.findCartItemByCart(cart);
+        List<CartItem> cartItemList = cartItemService.findCartItemByCart(newCart);
         boolean checkProduct = checkProductExist(product, cartItemList);
 //        neu san pham da ton tai trong gio hang
         if (checkProduct) {
@@ -70,7 +73,7 @@ public class CartItemController {
         } else {
 //        neu san pham chua ton tai thi tao cartItem moi
             CartItem cartItem = new CartItem();
-            cartItem.setCart(cart);
+            cartItem.setCart(newCart);
             cartItem.setQuantity(qty);
             cartItem.setProduct(product);
             cartItemService.saveOrUpdate(cartItem);

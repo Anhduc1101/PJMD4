@@ -29,6 +29,7 @@ public class CategoryController {
         model.addAttribute("category", cat);
         return "admin/category/sub-category";
     }
+//PHÂN TRANG
 
 //    @GetMapping("/sub-category/{id}")
 //    public String subCategory(@PathVariable("id") Integer id, Model model) {

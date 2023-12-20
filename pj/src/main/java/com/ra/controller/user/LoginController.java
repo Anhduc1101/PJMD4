@@ -30,15 +30,21 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String handleLogin(@Valid @ModelAttribute("user") User user, BindingResult result) {
+    public String handleLogin(@Valid @ModelAttribute("user") User user, BindingResult result,RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("mess","Email or Password is incorrect");
             return "user/login";
         } else {
             User userLogin = userService.login(user.getEmail(), user.getPassword());
             if (userLogin != null && userLogin.isRole() == true) {
+                if (userLogin.isStatus()){
                 // luu session vao nhe
                 session.setAttribute("userLogin", userLogin);
                 return "redirect:/";
+                }else {
+                    redirectAttributes.addFlashAttribute("mess","You were blocked !!! Must be unlock first!");
+                    return "redirect:/login";
+                }
             } else {
                 return "redirect:/admin";
             }

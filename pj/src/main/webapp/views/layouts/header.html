@@ -57,7 +57,7 @@
                 </div>
                 <!-- Header Top Language Currency -->
                 <!-- Header Top responsive Action -->
-                <div class="col d-lg-none ">
+                <div class="col d-lg-none " >
                     <div class="ec-header-bottons">
                         <!-- Header User Start -->
                         <span style="margin-top: 10px" th:text="${session.userLogin != null?session.userLogin.email:'User'}"></span>
@@ -66,8 +66,8 @@
                                     class="fi-rr-user"></i></button>
                             <ul class="dropdown-menu dropdown-menu-right">
                                     <span th:if="${session.userLogin !=null}">
-                                    <li><a class="dropdown-item" th:href="@{/checkout}">Checkout</a></li>
-                                    <li><a class="dropdown-item" th:href="@{/user/my-profile/{id}(id=${session.userLogin.userId})}">My Profile</a></li>
+<!--                                    <li><a class="dropdown-item" th:href="@{/checkout}">Checkout</a></li>-->
+<!--                                    <li><a class="dropdown-item" th:href="@{/user/my-profile/{id}(id=${session.userLogin.userId})}">My Profile</a></li>-->
                                     <li><a class="dropdown-item" th:href="@{/log-out}">Log Out</a></li>
                                     </span>
                                 <span th:unless="${session.userLogin !=null}">
@@ -78,21 +78,21 @@
                         </div>
                         <!-- Header User End -->
                         <!-- Header Cart Start -->
-                        <a th:href="@{/wish-list}" class="ec-header-btn ec-header-wishlist">
-                            <div class="header-icon"><i class="fi-rr-heart"></i></div>
-                            <span class="ec-header-count">4</span>
-                        </a>
+<!--                        <a th:href="@{/wish-list}" class="ec-header-btn ec-header-wishlist">-->
+<!--                            <div class="header-icon"><i class="fi-rr-heart"></i></div>-->
+<!--                            <span class="ec-header-count">4</span>-->
+<!--                        </a>-->
                         <!-- Header Cart End -->
                         <!-- Header Cart Start -->
 <!--                        <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">-->
                         <a th:href="@{/user/cart}" class="ec-header-btn">
                             <div class="header-icon"><i class="fi-rr-shopping-bag"></i></div>
-                            <span class="ec-header-count cart-count-lable" >3</span>
+                            <span class="ec-header-count cart-count-lable" ></span>
                         </a>
                         <!-- Header Cart End -->
-                        <!--                        <a href="javascript:void(0)" class="ec-header-btn ec-sidebar-toggle">-->
-                        <!--                            <i class="fi fi-rr-apps"></i>-->
-                        <!--                        </a>-->
+                                                <a href="javascript:void(0)" class="ec-header-btn ec-sidebar-toggle">
+<!--                                                    <i class="fi fi-rr-apps"></i>-->
+                                                </a>
                         <!-- Header menu Start -->
                         <a href="#ec-mobile-menu" class="ec-header-btn ec-side-toggle d-lg-none">
                             <i class="fi fi-rr-menu-burger"></i>
@@ -143,8 +143,8 @@
                                         class="fi-rr-user"></i></button>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <span th:if="${session.userLogin !=null}">
-                                    <li><a class="dropdown-item" th:href="@{/checkout}">Checkout</a></li>
-                                    <li><a class="dropdown-item" th:href="@{/user/my-profile/{id}(id=${session.userLogin.userId})}">My Profile</a></li>
+<!--                                    <li><a class="dropdown-item" th:href="@{/checkout}">Checkout</a></li>-->
+<!--                                    <li><a class="dropdown-item" th:href="@{/user/my-profile/{id}(id=${session.userLogin.userId})}">My Profile</a></li>-->
                                     <li><a class="dropdown-item" th:href="@{/log-out}">Log Out</a></li>
                                     </span>
                                     <span th:unless="${session.userLogin !=null}">
@@ -157,13 +157,13 @@
                             <!-- Header wishlist Start -->
                             <a th:href="@{/wish-list}" class="ec-header-btn ec-header-wishlist">
                                 <div class="header-icon"><i class="fi-rr-heart"></i></div>
-                                <span class="ec-header-count">4</span>
+<!--                                <span class="ec-header-count">4</span>-->
                             </a>
                             <!-- Header wishlist End -->
                             <!-- Header Cart Start -->
                             <a th:href="@{/cart}" class="ec-header-btn">
                                 <div class="header-icon"><i class="fi-rr-shopping-bag"></i></div>
-                                <span class="ec-header-count cart-count-lable" >3</span>
+<!--                                <span class="ec-header-count cart-count-lable" >3</span>-->
                             </a>
                             <!-- Header Cart End -->
                         </div>

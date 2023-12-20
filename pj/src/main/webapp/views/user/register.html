@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 
  <html lang="en" xmlns:th="http://www.thymeleaf.org">
- 
+
 <!-- Mirrored from maraviyainfotech.com/projects/ekka/ekka-v36/ekka-html/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Dec 2023 09:55:50 GMT -->
 <th:block th:insert="layouts/head.html"></th:block>
 <body class="register_page">
@@ -74,7 +74,9 @@
                                 </span>
                                 <span class="ec-register-wrap ec-register-half" style="margin-bottom: 20px !important;">
                                     <label>Phone:</label>
-                                    <input style="margin-bottom: 10px !important;" type="text" th:field="*{phone}"   name="tel" placeholder="Enter your phone number..."/>
+                                    <input style="margin-bottom: 10px !important;" type="text" th:field="*{phone}"   name="tel" placeholder="Enter your phone number..." required/>
+<!--                                                                   <small class="form-text text-danger" th:errors="*{phone}"></small>-->
+
                                 </span>
                                 <span class="ec-register-wrap ec-register-half" style="margin-bottom: 20px !important;">
                                     <label>Password*</label>
